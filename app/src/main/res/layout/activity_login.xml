@@ -7,7 +7,7 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/LogoLarge"
         android:layout_width="407dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -18,12 +18,12 @@
         app:srcCompat="@drawable/ic_meditation2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signupButton"
         android:layout_width="92dp"
         android:layout_height="49dp"
         android:layout_marginBottom="124dp"
         android:fontFamily="@font/comfortaa_bold"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="#2E2D2D"
         android:background="@drawable/rounded_corners"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,21 +37,21 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/comfortaa_bold"
-        android:text="Start your relaxation journey."
+        android:text="@string/start_your_relaxation_journey"
         android:textColor="#45736A"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/signupButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/RestfulTitleView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="68dp"
         android:fontFamily="@font/comfortaa_bold"
-        android:text="Restful Mind"
+        android:text="@string/restful_mind"
         android:textColor="#45736A"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -59,6 +59,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/LogoLarge" />
+
+    <TextView
+        android:id="@+id/LoginView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/login"
+        android:textColor="#2E2D2D"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupButton"
+        app:layout_constraintVertical_bias="0.19" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
