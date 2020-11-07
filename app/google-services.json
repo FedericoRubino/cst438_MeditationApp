@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "730513355756",
+    "firebase_url": "https://meditationrubino1.firebaseio.com",
+    "project_id": "meditationrubino1",
+    "storage_bucket": "meditationrubino1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730513355756:android:628ea6680d42ce8786c6c9",
+        "android_client_info": {
+          "package_name": "com.example.cst438_meditationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730513355756-4n95r2r4hqcuvbbjl5cvmg6074tah63r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqxz2HZGi69-GrN4rbJtgoanEhV3Ii_4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730513355756-4n95r2r4hqcuvbbjl5cvmg6074tah63r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
