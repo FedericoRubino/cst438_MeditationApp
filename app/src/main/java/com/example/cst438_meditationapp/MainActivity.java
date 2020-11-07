@@ -50,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
         readFromUserDB();
     }
 
+    // starts the signin activity
     public void startSignInActivity(View view){
         Intent intent = SigninActivity.getIntent(this.getApplicationContext(),"");
         startActivity(intent);
     }
 
-
+    // starts the login activity
+    public void startLogInActivity(View view){
+        Intent intent = LoginActivity.getIntent(this.getApplicationContext(),"");
+        startActivity(intent);
+    }
 
 
     public void readFromUserDB(){
@@ -73,31 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
-    public void addUser(){
 
-        // Create a new user with a first, middle, and last name
-        HashMap<String, Object> user2 = new HashMap<>();
-        user2.put("first", "Alan");
-        user2.put("middle", "Mathison");
-        user2.put("last", "Turing");
-        user2.put("born", 1912);
-
-        // Add a new document with a generated ID
-        db.collection("users")
-                .add(user2)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document", e);
-            }
-        });
-    }
 }

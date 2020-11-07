@@ -92,7 +92,9 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupButton"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0.19"
+        android:onClick="startLogInActivity"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
