@@ -5,11 +5,11 @@
 
     <ImageView
         android:id="@+id/slide_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/sleep_icon"
+        android:layout_width="226dp"
+        android:layout_height="206dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
+        app:srcCompat="@drawable/sleep_icon"
 
 
         />

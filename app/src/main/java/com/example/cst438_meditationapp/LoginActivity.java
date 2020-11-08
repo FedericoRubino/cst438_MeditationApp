@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Map<String, Object> user = document.getData();
                                 if(mUsername.getText().toString().equals(user.get("username")) && mPassword.getText().toString().equals(user.get("password"))){
 //                                    Toast.makeText(this,"You have succesfully logged in!!", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    startOnboarding();
                                     return;
                                 }
                                 Log.d(TAG, document.getId() + " => " + document.getData());
@@ -62,6 +62,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void startOnboarding() {
+        Intent intent = Onboarding.getIntent(this,"");
+        startActivity(intent);
     }
 
     // Intent factory

@@ -1,6 +1,8 @@
 package com.example.cst438_meditationapp;
 
+import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 

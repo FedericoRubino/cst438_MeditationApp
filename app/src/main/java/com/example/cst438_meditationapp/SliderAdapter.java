@@ -23,8 +23,8 @@ public class SliderAdapter extends PagerAdapter {
 
     // Arrays
     public int[] slide_images = {
-            R.drawable.eat_icon,
             R.drawable.sleep_icon,
+            R.drawable.eat_icon,
             R.drawable.code_icon,
     };
 
@@ -69,6 +69,10 @@ public class SliderAdapter extends PagerAdapter {
 
     }
 
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object){
+        container.removeView((RelativeLayout) object);
+    }
 
 
 }
