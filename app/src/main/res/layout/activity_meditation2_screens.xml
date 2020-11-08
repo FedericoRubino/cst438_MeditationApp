@@ -14,7 +14,7 @@
     </androidx.viewpager.widget.ViewPager>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/lotus"
         android:layout_width="226dp"
         android:layout_height="206dp"
         android:layout_centerHorizontal="true"
@@ -23,10 +23,10 @@
         android:contentDescription="@string/lotus" />
 
     <TextView
-        android:id="@+id/slide_description"
+        android:id="@+id/meditation_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/lotus"
         android:layout_centerHorizontal="true"
         android:padding="40dp"
         android:text="@string/sample_text"

@@ -12,13 +12,13 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Mediation2Screens extends AppCompatActivity {
+public class Meditation2Screens extends AppCompatActivity {
     public static final String EXTRA = "ONBOARD EXTRA";
 
     private ViewPager mViewPager;
     private Button doneBtn;
     Timer timer;
-    private int page = 1;
+    private int page = 0;
 
     private MeditationAdapter mediationAdapter;
 
@@ -48,7 +48,7 @@ public class Mediation2Screens extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if(position != 14){
+            if(position != 13){
                 doneBtn.setEnabled(false);
                 doneBtn.setVisibility(View.INVISIBLE);
             } else {
@@ -65,40 +65,28 @@ public class Mediation2Screens extends AppCompatActivity {
 
     public void pageSwitcher(int seconds) {
         timer = new Timer(); // At this line a new Thread will be created
-        timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 4000); // delay
+        timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 4000);
+        // delay
         // in
         // milliseconds
     }
 
     class RemindTask extends TimerTask {
-
         @Override
         public void run() {
+            if (page == 14) { // number of pages 14
+                timer.cancel();
+            } else {
+                mViewPager.setCurrentItem(page++);
+            }
 
-            // As the TimerTask run on a seprate thread from UI thread we have
-            // to call runOnUiThread to do work on UI thread.
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    if (page == 14) { // number of pages 14
-                        timer.cancel();
-                    } else {
-                        mViewPager.setCurrentItem(page++);
-                    }
-                }
-            });
         }
-    }
-
-    // TODO: This will need to be changed once we have a Homepage activity
-    public void goToHomePage(View view){
-        Intent intent = LoginActivity.getIntent(this, "");
-        startActivity(intent);
     }
 
 
     // Intent factory
     public static Intent getIntent(Context context, String val){
-        Intent intent = new Intent(context, Mediation2Screens.class);
+        Intent intent = new Intent(context, Meditation2Screens.class);
         intent.putExtra(EXTRA, val);
         return intent;
     }

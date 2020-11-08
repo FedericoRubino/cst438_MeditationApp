@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,8 +20,8 @@ public class MeditationAdapter extends PagerAdapter {
 
     }
 
-    public String[] slide_descriptions = {
-            "@string/begin_a_two_minute_breathing_exercise_to_recenter_and_refocus",
+    public String[] meditation_descriptions = {
+            "Begin a two minute breathing exercise to recenter and refocus",
             "Find a comfortable position....",
             "Lengthen your spine....",
             "Put your hands on your belly....",
@@ -41,7 +40,7 @@ public class MeditationAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return slide_descriptions.length;
+        return meditation_descriptions.length;
     }
 
     @Override
@@ -51,13 +50,11 @@ public class MeditationAdapter extends PagerAdapter {
 
     public Object instantiateItem(ViewGroup container, int position){
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.slide_layout, container, false);
+        View view = layoutInflater.inflate(R.layout.activity_meditation2_screens, container, false);
 
-        ImageView slideImageView =(ImageView) view.findViewById(R.id.slide_image);
-        TextView slideHeading =(TextView) view.findViewById(R.id.slide_heading);
-        TextView slideDescription =(TextView) view.findViewById(R.id.slide_description);
+        TextView slideDescription =(TextView) view.findViewById(R.id.meditation_description);
 
-        slideDescription.setText(slide_descriptions[position]);
+        slideDescription.setText(meditation_descriptions[position]);
 
         container.addView(view);
 

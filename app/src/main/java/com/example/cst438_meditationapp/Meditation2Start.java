@@ -7,7 +7,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Mediation2Start extends AppCompatActivity {
+public class Meditation2Start extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,14 +17,14 @@ public class Mediation2Start extends AppCompatActivity {
     }
 
     public void startTimer(View view){
-        Intent intent = Mediation2Screens.getIntent(this, "");
+        Intent intent = Meditation2Screens.getIntent(this, "");
         startActivity(intent);
     }
 
 
     // Intent factory
     public static Intent getIntent(Context context, String val){
-        Intent intent = new Intent(context, Mediation2Start.class);
+        Intent intent = new Intent(context, Meditation2Start.class);
         return intent;
     }
 
