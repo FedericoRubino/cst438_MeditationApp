@@ -24,11 +24,22 @@
         app:srcCompat="@drawable/ic_lotus" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTv"
+        android:layout_marginLeft="8dp"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        android:layout_toRightOf="@+id/post_image"
+        android:text="TITLE"
+        />
+    <TextView
         android:id="@+id/postTv"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:layout_toRightOf="@+id/post_image"
+        android:layout_below="@+id/titleTv"
         android:text="@string/begin_a_two_minute_breathing_exercise_to_recenter_and_refocus"
         android:textColor="#000000" />
 
