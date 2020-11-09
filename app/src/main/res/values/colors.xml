@@ -5,4 +5,15 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorTransparentWhite">#CCCCCC</color>
+
+    <color name="colorGrey">#F2F2F2</color>
+    <color name="colorGreyBlue">#88BFBA</color>
+    <color name="colorGreyBlueLight">#9CD9D3</color>
+    <color name="colorDarkBlue">#45736A</color>
+    <color name="colorMediumBlue">#45736A</color>
+
+
+
+
+
 </resources>

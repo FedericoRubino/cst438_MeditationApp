@@ -39,4 +39,25 @@ public class Util {
         return true;
     }
 
+    public static boolean addPostToDB(FirebaseFirestore db, String title, String description) {
+        HashMap<String, Object> newUser = new HashMap<>();
+        newUser.put("name", title);
+        newUser.put("description", description);
+
+        // Add a new document with a generated ID
+        db.collection("posts")
+                .add(newUser)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
+        return true;
+    }
 }

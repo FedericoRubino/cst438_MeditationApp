@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feed_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
-        android:background="#00BCD4"
-        android:backgroundTint="#AD009688"
+        android:background="@color/colorGreyBlue"
+        android:backgroundTint="@color/colorGreyBlue"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -20,6 +21,7 @@
 
     <Button
         android:id="@+id/button2"
+        android:backgroundTint="@color/colorDarkBlue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -28,5 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feed_recycler_view"
         android:text="ADD"
+        android:onClick="addPost"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

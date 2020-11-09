@@ -85,7 +85,7 @@ public class FeedActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //save selected object
-                    selectedObject = objectArray.get(getAdapterPosition()).get("username").toString();
+                    selectedObject = objectArray.get(getAdapterPosition()).get("name").toString();
                     Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
 
                     //change text color of selected item
@@ -137,6 +137,11 @@ public class FeedActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Probelms!!!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    // starts the add post activity
+    public void addPost(View view){
+        startActivity(AddPostActivity.getIntent(this,""));
     }
 
 
