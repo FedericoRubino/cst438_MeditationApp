@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="horizontal"
+    android:layout_margin="20dp">
+
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="5dp"
+        app:srcCompat="@drawable/eat_icon" />
+
+    <ImageView
+        android:id="@+id/like_image"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/post_image"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/ic_lotus" />
+
+    <TextView
+        android:id="@+id/postTv"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_toRightOf="@+id/post_image"
+        android:text="@string/begin_a_two_minute_breathing_exercise_to_recenter_and_refocus"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:id="@+id/heart_image"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/post_image"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/like_image"
+        app:srcCompat="@drawable/sleep_icon" />
+
+</RelativeLayout>

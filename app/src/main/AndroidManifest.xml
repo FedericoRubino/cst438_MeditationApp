@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home"></activity>
+        <activity android:name=".FeedActivity"></activity>
+        <activity android:name=".Home" />
         <activity android:name=".Meditation2Screens" />
         <activity android:name=".Relaxation2ScreenComplete" />
         <activity android:name=".Relaxation2Screen6" />

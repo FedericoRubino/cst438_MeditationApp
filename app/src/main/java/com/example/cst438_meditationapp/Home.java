@@ -22,6 +22,13 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+    public void startFeed(View view){
+        Intent intent = FeedActivity.getIntent(this,"");
+        startActivity(intent);
+    }
+
+
     // Intent factory
     public static Intent getIntent(Context context, String val){
         Intent intent = new Intent(context, Home.class);
