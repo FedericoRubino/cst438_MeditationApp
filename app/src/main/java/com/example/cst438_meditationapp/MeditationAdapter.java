@@ -34,7 +34,7 @@ public class MeditationAdapter extends PagerAdapter {
             "Slowly breath out for a count of four through your mouth....",
             "Breath in for a count of four through your nose....",
             "Slowly breath out for a count of four through your mouth....",
-            "Great job!\n Repeat this mediation thoughout the day as you begin to feel overwhelmed or stressed."
+            "Great job!\n Repeat this mediation throughout the day as you begin to feel overwhelmed or stressed."
     };
 
 
@@ -50,7 +50,7 @@ public class MeditationAdapter extends PagerAdapter {
 
     public Object instantiateItem(ViewGroup container, int position){
         layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.activity_meditation2_screens, container, false);
+        View view = layoutInflater.inflate(R.layout.meditation_screen_layout, container, false);
 
         TextView slideDescription =(TextView) view.findViewById(R.id.meditation_description);
 

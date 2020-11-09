@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2E2E2E">
+    android:background="@drawable/gradient_list">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slideViewPager"
         android:layout_width="match_parent"
         android:layout_height="425dp"
-        android:background="#2E2E2E">
+        android:background="@drawable/gradient_list">
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -22,26 +22,17 @@
         app:srcCompat="@drawable/ic_lotus"
         android:contentDescription="@string/lotus" />
 
-    <TextView
-        android:id="@+id/meditation_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lotus"
-        android:layout_centerHorizontal="true"
-        android:padding="40dp"
-        android:text="@string/sample_text"
-        android:textColor="@color/colorTransparentWhite" />
-
     <Button
-        android:id="@+id/startBtn"
+        android:id="@+id/doneBtn"
         android:layout_width="154dp"
         android:layout_height="44dp"
         android:layout_below="@+id/slideViewPager"
         android:layout_centerInParent="true"
         android:fontFamily="@font/comfortaa_bold"
+        android:layout_marginTop="100dp"
         android:textColor="#2E2D2D"
         android:background="@drawable/rounded_corners"
-        android:onClick="startTimer"
+        android:onClick="goToHomePage"
         android:text="@string/Finish_Meditation"
         android:visibility="invisible" />
 
