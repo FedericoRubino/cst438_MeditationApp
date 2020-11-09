@@ -9,9 +9,19 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Onboarding"></activity>
+        <activity android:name=".Home"></activity>
+        <activity android:name=".Meditation2Screens" />
+        <activity android:name=".Relaxation2ScreenComplete" />
+        <activity android:name=".Relaxation2Screen6" />
+        <activity android:name=".Relaxation2Screen5" />
+        <activity android:name=".Relaxation2Screen4" />
+        <activity android:name=".Relaxation2Screen3" />
+        <activity android:name=".Relaxation2Screen2" />
+        <activity android:name=".Relaxation2Screen1" />
+        <activity android:name=".Meditation2Start" />
+        <activity android:name=".Onboarding" />
         <activity android:name=".RecyclerViewActivity" />
-        <activity android:name=".SigninActivity" />
+        <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

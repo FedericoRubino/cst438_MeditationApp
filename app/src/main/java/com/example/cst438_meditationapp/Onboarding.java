@@ -1,8 +1,5 @@
 package com.example.cst438_meditationapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +9,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 public class Onboarding extends AppCompatActivity {
 
     public static final String EXTRA = "ONBOARD EXTRA";
 
     private ViewPager mSlideViewPager;
     private LinearLayout mDotLayout;
-    private Button doneBtn;
+    private Button signupBtn;
 
     private TextView[] mDots;
 
@@ -31,7 +31,7 @@ public class Onboarding extends AppCompatActivity {
 
         mSlideViewPager = findViewById(R.id.slideViewPager);
         mDotLayout = findViewById(R.id.dotsLayout);
-        doneBtn = findViewById(R.id.doneBtn);
+        signupBtn = findViewById(R.id.doneBtn);
 
         sliderAdapter = new SliderAdapter(this);
 
@@ -75,11 +75,11 @@ public class Onboarding extends AppCompatActivity {
 
             // activate the done button once we have reached the third page!
             if(position != 2){
-                doneBtn.setEnabled(false);
-                doneBtn.setVisibility(View.INVISIBLE);
+                signupBtn.setEnabled(false);
+                signupBtn.setVisibility(View.INVISIBLE);
             } else {
-                doneBtn.setEnabled(true);
-                doneBtn.setVisibility(View.VISIBLE);
+                signupBtn.setEnabled(true);
+                signupBtn.setVisibility(View.VISIBLE);
             }
         }
 
@@ -89,9 +89,9 @@ public class Onboarding extends AppCompatActivity {
         }
     };
 
-    // TODO: This will need to be changed once we have a Homepage activity
-    public void goToHomePage(View view){
-        Intent intent = LoginActivity.getIntent(this, "");
+
+    public void goToSignupPage(View view){
+        Intent intent = SignupActivity.getIntent(this, "");
         startActivity(intent);
     }
 

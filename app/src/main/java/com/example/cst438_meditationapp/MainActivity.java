@@ -1,25 +1,19 @@
 package com.example.cst438_meditationapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
 
 import static android.content.ContentValues.TAG;
 
@@ -50,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         readFromUserDB();
     }
 
-    // starts the signin activity
-    public void startSignInActivity(View view){
-        Intent intent = SigninActivity.getIntent(this.getApplicationContext(),"");
+    // starts the signup activity
+    public void startSignupActivity(View view){
+        Intent intent = SignupActivity.getIntent(this.getApplicationContext(),"");
         startActivity(intent);
     }
 
@@ -78,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void startOnboarding(View view) {
+        Intent intent = Onboarding.getIntent(this,"");
+        startActivity(intent);
     }
 
 

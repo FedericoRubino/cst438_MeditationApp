@@ -27,13 +27,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/doneBtn"
-        android:text="Done"
+        android:text="@string/register"
         android:layout_alignLeft="@+id/dotsLayout"
         android:layout_below="@+id/slideViewPager"
         android:layout_marginLeft="100dp"
         android:background="@color/colorWhite"
         android:visibility="invisible"
-        android:onClick="goToHomePage"
+        android:onClick="goToSignupPage"
         />
 
 
