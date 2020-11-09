@@ -3,6 +3,7 @@ package com.example.cst438_meditationapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,7 +18,7 @@ public class Meditation2Screens extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private Button doneBtn;
-    Timer timer;
+    private Timer timer;
     private int page = 0;
 
     private MeditationAdapter mediationAdapter;
@@ -27,6 +28,13 @@ public class Meditation2Screens extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meditation2_screens);
 
+//        ConstraintLayout constraintLayout = findViewById(R.id.layout);
+//
+//        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+//        animationDrawable.setEnterFadeDuration(2000);
+//        animationDrawable.setExitFadeDuration(4000);
+//        animationDrawable.start();
+
         mViewPager = findViewById(R.id.slideViewPager);
         doneBtn = findViewById(R.id.doneBtn);
 
@@ -35,8 +43,24 @@ public class Meditation2Screens extends AppCompatActivity {
         mViewPager.setAdapter(mediationAdapter);
 
         mViewPager.addOnPageChangeListener(viewListener);
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (page == 14) {
+                    timer.cancel();
+                }
+                mViewPager.setCurrentItem(page++, true);
+            }
+        };
 
-        pageSwitcher(4);
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 5000, 5000);
 
     }
 
@@ -63,24 +87,9 @@ public class Meditation2Screens extends AppCompatActivity {
         }
     };
 
-    public void pageSwitcher(int seconds) {
-        timer = new Timer(); // At this line a new Thread will be created
-        timer.scheduleAtFixedRate(new RemindTask(), 0, seconds * 4000);
-        // delay
-        // in
-        // milliseconds
-    }
-
-    class RemindTask extends TimerTask {
-        @Override
-        public void run() {
-            if (page == 14) { // number of pages 14
-                timer.cancel();
-            } else {
-                mViewPager.setCurrentItem(page++);
-            }
-
-        }
+    public void goToHomePage(View view){
+        Intent intent = Home.getIntent(this, "");
+        startActivity(intent);
     }
 
 
