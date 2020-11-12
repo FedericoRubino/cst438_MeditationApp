@@ -1,12 +1,16 @@
 package com.example.cst438_meditationapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -15,9 +19,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.FileNotFoundException;
+import java.util.Date;
+import java.util.logging.LogRecord;
 
 public class AddPostActivity extends AppCompatActivity {
 
@@ -49,11 +58,27 @@ public class AddPostActivity extends AppCompatActivity {
         imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Take New Picture clicked
+                                dispatchTakePictureIntent();
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //Choose Existing clicked
+                                dispatchStoragePictureIntent();
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddPostActivity.this);
+                builder.setPositiveButton("Take New Picture", dialogClickListener)
+                        .setNegativeButton("Choose Existing", dialogClickListener).show();
             }
         });
-
-    }
+    }//END OF onCreate()
     
     public void createPost(View view){
         String title = mTitle.getText().toString();
@@ -92,7 +117,18 @@ public class AddPostActivity extends AppCompatActivity {
         }
     }
 
-    //retrieve picture taken (picture passed as extra with key "data" from return intent)
+    private void dispatchStoragePictureIntent(){
+        Intent pictureStorageIntent = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        try {
+            startActivityForResult(pictureStorageIntent, 0);
+        } catch (ActivityNotFoundException e) {
+            // display error state to the user
+            Toast.makeText(this,"An error occurred", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //retrieve picture (picture passed as extra with key "data" from return intent)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -101,7 +137,16 @@ public class AddPostActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             //display retrieved image in imageView
             imageView.setImageBitmap(imageBitmap);
+        }else if (resultCode == RESULT_OK){
+            Uri targetUri = data.getData();
+            Bitmap bitmap;
+            try {
+                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(targetUri));
+                //display retrieved image in imageView
+                imageView.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
-
-}
+}//END OF AddPostActivity
