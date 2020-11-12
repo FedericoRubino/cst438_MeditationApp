@@ -23,21 +23,21 @@ public class SliderAdapter extends PagerAdapter {
 
     // Arrays
     public int[] slide_images = {
-            R.drawable.sleep_icon,
-            R.drawable.eat_icon,
-            R.drawable.code_icon,
+            R.drawable.mediations_icon,
+            R.drawable.photos_icon,
+            R.drawable.connect_icon,
     };
 
     public String[] slide_headings = {
-            "EAT",
-            "SLEEP",
-            "CODE"
+            "GUIDED MEDITATIONS",
+            "SHARE PHOTOS",
+            "CONNECT"
     };
 
     public String[] slide_descriptions = {
-            "Es gibt viele Variationen der Passages des Lorem Ipsum, aber der Hauptteil erlitt Änderungen in irgendeiner Form, durch Humor oder zufällige Wörter welche nicht einmal ansatzweise glaubwürdig aussehen. Wenn du eine Passage des Lorem Ipsum nutzt, solltest du aufpassen dass in der Mitte des Textes keine ungewollten Wörter stehen. Viele der Generatoren im Internet neigen dazu, vorgefertigte Stücke zu wiederholen",
-            "Es gibt viele Variationen der Passages des Lorem Ipsum, aber der Hauptteil erlitt Änderungen in irgendeiner Form, durch Humor oder zufällige Wörter welche nicht einmal ansatzweise glaubwürdig aussehen. Wenn du eine Passage des Lorem Ipsum nutzt, solltest du aufpassen dass in der Mitte des Textes keine ungewollten Wörter stehen. Viele der Generatoren im Internet neigen dazu, vorgefertigte Stücke zu wiederholen",
-            "Es gibt viele Variationen der Passages des Lorem Ipsum, aber der Hauptteil erlitt Änderungen in irgendeiner Form, durch Humor oder zufällige Wörter welche nicht einmal ansatzweise glaubwürdig aussehen. Wenn du eine Passage des Lorem Ipsum nutzt, solltest du aufpassen dass in der Mitte des Textes keine ungewollten Wörter stehen. Viele der Generatoren im Internet neigen dazu, vorgefertigte Stücke zu wiederholen"
+            "Use guided meditations to re-center and refocus. Tune out the noise of the outside world for a couple of minutes a day and re-center yourself. Find a momement of calm. Work on developing a restful mind instead of a restless one.",
+            "Take photos of things that bring you joy and calm. Share these photos with others so that they can share in your relaxation and mindfulness. Comment on others photos and create meaningful conversations about wellness.",
+            "Connect with like minded individuals and find others who share the same interest in practicing self-care and mindfulness to reduce stress and anxiety."
     };
 
 

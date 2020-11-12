@@ -4,37 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="#232733"
     tools:context=".Onboarding">
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="575dp"
         android:id="@+id/slideViewPager"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="553dp" />
 
     <LinearLayout
+        android:id="@+id/dotsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        android:layout_below="@+id/slideViewPager"
+        android:layout_below="@id/doneBtn"
         android:layout_centerHorizontal="true"
-        android:id="@+id/dotsLayout"
-        ></LinearLayout>
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:padding="20dp"></LinearLayout>
 
     <Button
+        android:id="@+id/doneBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/doneBtn"
-        android:text="@string/register"
-        android:layout_alignLeft="@+id/dotsLayout"
         android:layout_below="@+id/slideViewPager"
-        android:layout_marginLeft="100dp"
-        android:background="@color/colorWhite"
-        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:textColor="#2E2D2D"
+        android:background="@drawable/rounded_corners"
         android:onClick="goToSignupPage"
-        />
+        android:text="Sign up"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

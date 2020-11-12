@@ -5,6 +5,7 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#232733"
     tools:context=".MainActivity">
 
     <ImageView
@@ -41,7 +42,7 @@
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/start_your_relaxation_journey"
-        android:textColor="#45736A"
+        android:textColor="@color/colorGreyBlueLight"
         app:layout_constraintBottom_toTopOf="@+id/signupButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -71,7 +72,7 @@
         android:layout_marginBottom="68dp"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/restful_mind"
-        android:textColor="#45736A"
+        android:textColor="@color/colorGreyBlueLight"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -86,7 +87,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/login"
-        android:textColor="#2E2D2D"
+        android:textColor="@color/colorGreyBlueLight"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
