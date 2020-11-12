@@ -58,7 +58,7 @@ public class Onboarding extends AppCompatActivity {
         }
 
         if(mDots.length>0){
-            mDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
+            mDots[position].setTextColor(getResources().getColor(R.color.colorGrey));
         }
 
     }
