@@ -10,7 +10,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slideViewPager"
         android:layout_width="match_parent"
-        android:layout_height="553dp" />
+        android:layout_height="500dp" />
 
     <LinearLayout
         android:id="@+id/dotsLayout"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/doneBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:padding="20dp"></LinearLayout>
 
