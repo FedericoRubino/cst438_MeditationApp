@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232733"
+    android:background="@color/colorNavyBackgroud"
     tools:context=".Meditation2Start">
 
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slideViewPager"
         android:layout_width="match_parent"
-        android:layout_height="425dp"
-        android:background="#2E2E2E">
+        android:layout_height="425dp">
 
     </androidx.viewpager.widget.ViewPager>
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/colorNavyBackgroud">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/loginPage"
         android:textAllCaps="true"
+        android:textColor="@color/colorGrey"
         />
 
     <EditText
@@ -23,6 +25,9 @@
         android:layout_marginTop="150dp"
         android:hint="@string/username"
         android:textAlignment="center"
+        android:textColor="@color/colorGrey"
+        android:textColorHint="@color/colorGrey"
+        android:backgroundTint="@color/colorGrey"
 
         />
 
@@ -31,20 +36,25 @@
         android:id="@+id/passwordLoginEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:layout_below="@+id/usernameLoginEt"
+        android:layout_marginTop="50dp"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:textAlignment="center"
+        android:textColor="@color/colorGrey"
+        android:backgroundTint="@color/colorGrey"
 
-        />
+        android:textColorHint="@color/colorGrey" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:layout_below="@+id/passwordLoginEt"
         android:layout_marginTop="50dp"
         android:onClick="loginUser"
+        android:background="@drawable/rounded_corners"
+        android:layout_centerHorizontal="true"
         />
 
 
