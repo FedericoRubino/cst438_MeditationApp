@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:orientation="horizontal"
-    android:layout_margin="20dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/rounded_corners_feed"
+    android:padding="10dp"
+    >
 
 
     <ImageView
         android:id="@+id/post_image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        app:srcCompat="@drawable/eat_icon" />
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorNavyBackgroud"
+        app:srcCompat="@drawable/ic_meditation" />
 
     <ImageView
         android:id="@+id/like_image"
@@ -24,15 +35,17 @@
         app:srcCompat="@drawable/ic_lotus" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleTv"
-        android:layout_marginLeft="8dp"
-        android:textAllCaps="true"
-        android:textSize="20dp"
-        android:layout_toRightOf="@+id/post_image"
-        android:text="TITLE"
-        />
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/titleTv"
+    android:layout_marginLeft="8dp"
+    android:textAllCaps="true"
+    android:textSize="20dp"
+    android:layout_toRightOf="@+id/post_image"
+    android:text="TITLE"
+    android:textColor="@color/colorNavyBackgroud"
+    />
+
     <TextView
         android:id="@+id/postTv"
         android:layout_width="fill_parent"
@@ -41,15 +54,20 @@
         android:layout_toRightOf="@+id/post_image"
         android:layout_below="@+id/titleTv"
         android:text="@string/begin_a_two_minute_breathing_exercise_to_recenter_and_refocus"
-        android:textColor="#000000" />
+        android:textColor="@color/colorNavyBackgroud" />
 
-    <ImageView
-        android:id="@+id/heart_image"
-        android:layout_width="45dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/post_image"
-        android:layout_marginLeft="20dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/like_image"
-        app:srcCompat="@drawable/sleep_icon" />
+        android:layout_below="@+id/post_image"
+        android:layout_marginTop="10dp"
+        android:text="1"
+        android:textColor="@color/colorNavyBackgroud"
+        android:visibility="visible"
+
+        />
+
+
 
 </RelativeLayout>
