@@ -2,13 +2,15 @@ package com.example.cst438_meditationapp;
 
 import android.content.Context;
 
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import java.util.HashMap;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -17,10 +19,23 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    private FirebaseFirestore db;
+
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.cst438_meditationapp", appContext.getPackageName());
+        db = FirebaseFirestore.getInstance();
+    }
+
+    @Test
+    public void testUsername() {
+        HashMap<String, Object> newUser = new HashMap<>();
+        newUser.put("username", "cst");
+        newUser.put("password", "cst123");
+        Util.addUserToDB(db, newUser);
+//        User retrieveUser = getUserFromDB(FirebaseFirestore db, User newUser);
+//        assertEquals(newUser.getUsername(), retrieveUser.getUsername());
+//        assertNotEquals("abc", newUser.getUsername());
     }
 }

@@ -1,8 +1,6 @@
 package com.example.cst438_meditationapp;
 
-import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -38,6 +36,29 @@ public class Util {
         });
         return true;
     }
+
+    public static boolean addUserToDB(FirebaseFirestore db, HashMap<String, Object> newUser){
+
+        // Add a new document with a generated ID
+        db.collection("users")
+                .add(newUser)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
+        return true;
+    }
+
+//    public static User getUserFromDB(FirebaseFirestore db, User user) {
+//
+//    }
 
     public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
         HashMap<String, Object> newUser = new HashMap<>();
