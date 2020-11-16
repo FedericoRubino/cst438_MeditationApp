@@ -39,10 +39,11 @@ public class Util {
         return true;
     }
 
-    public static boolean addPostToDB(FirebaseFirestore db, String title, String description) {
+    public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
         HashMap<String, Object> newUser = new HashMap<>();
-        newUser.put("name", title);
+        newUser.put("title", title);
         newUser.put("description", description);
+        newUser.put("imageURL", imageURL);
 
         // Add a new document with a generated ID
         db.collection("posts")

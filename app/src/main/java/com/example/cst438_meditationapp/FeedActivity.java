@@ -7,20 +7,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +38,11 @@ import java.util.Map;
 import static android.content.ContentValues.TAG;
 
 public class FeedActivity extends AppCompatActivity {
+
+    // this is the storage for our images
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    // Create a storage reference from our app
+    StorageReference storageRef = storage.getReference();
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<Map<String, Object>> objectArray;
@@ -76,10 +89,50 @@ public class FeedActivity extends AppCompatActivity {
         }
 
         public void bind(Map<String, Object> obj) {
+
+            if(obj.containsKey("imageURL")) {
+                // downloading the image from the cloud storage
+                // Create a reference with an initial file path and name
+                StorageReference pathReference = storageRef.child(obj.get("imageURL").toString());
+                Log.d(TAG, "Tried to add an image " + pathReference );
+
+
+//                StorageReference pathReference = storage.getReferenceFromUrl(obj.get("imageURL").toString());
+//                ImageView postImage = findViewById(R.id.post_image);
+
+                final long ONE_MEGABYTE = 1024 * 1024;
+                pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] byteArray) {
+                        // Data for "images/island.jpg" is returns, use this as needed
+                        Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                        ImageView image = findViewById(R.id.post_image);
+
+//                        ImageView image = (ImageView) findViewById(R.id.imageView1);
+                        image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors
+                    }
+                });
+
+
+
+
+
+                //TODO: The reference works no problem, the issue is the Glide!
+                // Download directly from StorageReference using Glide
+                // (See MyAppGlideModule for Loader registration)
+//                Glide.with(FeedActivity.this)
+//                        .load(pathReference)
+//                        .into(postImage);
+            }
             final TextView item = itemView.findViewById(R.id.postTv);
             item.setText(obj.get("description").toString());
             final TextView itemTitle = itemView.findViewById(R.id.titleTv);
-            itemTitle.setText(obj.get("name").toString());
+            itemTitle.setText(obj.get("title").toString());
             //make item clickable
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
