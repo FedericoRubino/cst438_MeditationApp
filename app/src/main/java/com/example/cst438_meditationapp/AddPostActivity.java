@@ -1,5 +1,6 @@
 package com.example.cst438_meditationapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,27 +11,40 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.logging.LogRecord;
 
 public class AddPostActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    //
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    // Create a storage reference from our app
+    StorageReference storageRef = storage.getReference();
+    // Create a child reference
+    // imagesRef now points to "images"
+    StorageReference imagesRef = storageRef.child("images");
 
     EditText mTitle;
     EditText mDescription;
@@ -91,8 +105,12 @@ public class AddPostActivity extends AppCompatActivity {
             Toast.makeText(this,"Description is missing", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(Util.addPostToDB(db, title,description)){
+        // this where the upload to the database happens
+        String url = uploadImage();
+        Toast.makeText(this, "The image url is: " + url,Toast.LENGTH_SHORT).show();
+        if(Util.addPostToDB(db, title, description, url)){
             Toast.makeText(this,"You have successfully created a new post", Toast.LENGTH_SHORT).show();
+//            uploadImage();
             goToFeed();
         }
     }
@@ -149,4 +167,37 @@ public class AddPostActivity extends AppCompatActivity {
             }
         }
     }
+
+
+    public String uploadImage(){
+        String url = "images/" + mTitle.getText().toString();
+        StorageReference tempRef = storageRef.child(url);
+
+        // Get the data from an ImageView as bytes
+        imageView.setDrawingCacheEnabled(true);
+        imageView.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = tempRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+            }
+        });
+        return url;
+
+    }
+
 }//END OF AddPostActivity
+
+
