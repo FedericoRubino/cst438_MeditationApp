@@ -126,7 +126,10 @@ public class FeedActivity extends AppCompatActivity {
             super(inflater.inflate(R.layout.feed_item, parent, false));
         }
 
+
+        Map<String, Object> currentObj;
         public void bind(Map<String, Object> obj) {
+            currentObj = obj;
 
             if(obj.containsKey("imageURL")) {
                 image = null;
@@ -141,11 +144,19 @@ public class FeedActivity extends AppCompatActivity {
                         public void onSuccess(byte[] byteArray) {
                             // Data for "images/island.jpg" is returns, use this as needed
                             Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                            image = findViewById(R.id.post_image);
+                            image = itemView.findViewById(R.id.post_image);
 
 //                        ImageView image = (ImageView) findViewById(R.id.imageView1);
                             image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
                             Log.d(TAG, "Successfully added " + pathReference);
+
+
+                            final TextView item = itemView.findViewById(R.id.postTv);
+                            item.setText(currentObj.get("description").toString());
+                            final TextView itemTitle = itemView.findViewById(R.id.titleTv);
+                            itemTitle.setText(currentObj.get("title").toString());
+
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -156,32 +167,37 @@ public class FeedActivity extends AppCompatActivity {
                         }
                     });
 //                }
+            }//if
+            else {
+                final TextView item = itemView.findViewById(R.id.postTv);
+                item.setText(obj.get("description").toString());
+                final TextView itemTitle = itemView.findViewById(R.id.titleTv);
+                itemTitle.setText(obj.get("title").toString());
             }
-            final TextView item = itemView.findViewById(R.id.postTv);
-            item.setText(obj.get("description").toString());
-            final TextView itemTitle = itemView.findViewById(R.id.titleTv);
-            itemTitle.setText(obj.get("title").toString());
-            //make item clickable
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //save selected object
-                    selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
-                    Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
+                //make item clickable
+//                itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        //save selected object
+//                        selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
+//                        Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
+//
+//                        //change text color of selected item
+//                        item.setTextColor(Color.parseColor("#FFFFFF"));
+//                        if (!firstClick) {
+//                            lastItem.setTextColor(Color.parseColor("#000000"));
+//                        } else {
+//                            firstClick = false;
+//                        }
+//                        if (lastObjPos == getAdapterPosition()) {
+//                            item.setTextColor(Color.parseColor("#FFFFFF"));
+//                        }
+//                        lastItem = item;
+//                        lastObjPos = getAdapterPosition();
+//                    }
+//                });
 
-                    //change text color of selected item
-                    item.setTextColor(Color.parseColor("#FFFFFF"));
-                    if(!firstClick) {
-                        lastItem.setTextColor(Color.parseColor("#000000"));
-                    }else { firstClick = false; }
-                    if(lastObjPos == getAdapterPosition()){
-                        item.setTextColor(Color.parseColor("#FFFFFF"));
-                    }
-                    lastItem = item;
-                    lastObjPos = getAdapterPosition();
-                }
-            });
-        }
+        }//bind()
     }
 
     // This gets the information from the database and then calls the
