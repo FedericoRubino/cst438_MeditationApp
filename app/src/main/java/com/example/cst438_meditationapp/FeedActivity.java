@@ -40,9 +40,11 @@ import static android.content.ContentValues.TAG;
 public class FeedActivity extends AppCompatActivity {
 
     // this is the storage for our images
-    FirebaseStorage storage = FirebaseStorage.getInstance();
+    FirebaseStorage storage;
     // Create a storage reference from our app
-    StorageReference storageRef = storage.getReference();
+    StorageReference storageRef;
+
+    StorageReference pathReference;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<Map<String, Object>> objectArray;
@@ -60,6 +62,9 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
         objectArray = new ArrayList();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+        pathReference = null;
         getDBInfo();
 
     }
@@ -93,13 +98,9 @@ public class FeedActivity extends AppCompatActivity {
             if(obj.containsKey("imageURL")) {
                 // downloading the image from the cloud storage
                 // Create a reference with an initial file path and name
-                StorageReference pathReference = storageRef.child(obj.get("imageURL").toString());
-                Log.d(TAG, "Tried to add an image " + pathReference );
-
-
-//                StorageReference pathReference = storage.getReferenceFromUrl(obj.get("imageURL").toString());
-//                ImageView postImage = findViewById(R.id.post_image);
-
+                pathReference = null;
+                pathReference = storageRef.child(obj.get("imageURL").toString());
+//                Log.d(TAG, "Tried to add an image " + pathReference );
                 final long ONE_MEGABYTE = 1024 * 1024;
                 pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                     @Override
@@ -115,19 +116,11 @@ public class FeedActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         // Handle any errors
+                        Log.d(TAG, "FAILED HERE" + pathReference);
+
                     }
                 });
 
-
-
-
-
-                //TODO: The reference works no problem, the issue is the Glide!
-                // Download directly from StorageReference using Glide
-                // (See MyAppGlideModule for Loader registration)
-//                Glide.with(FeedActivity.this)
-//                        .load(pathReference)
-//                        .into(postImage);
             }
             final TextView item = itemView.findViewById(R.id.postTv);
             item.setText(obj.get("description").toString());
@@ -138,7 +131,7 @@ public class FeedActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //save selected object
-                    selectedObject = objectArray.get(getAdapterPosition()).get("name").toString();
+                    selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
                     Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
 
                     //change text color of selected item
