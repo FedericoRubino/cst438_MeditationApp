@@ -24,6 +24,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -46,9 +49,13 @@ public class FeedActivity extends AppCompatActivity {
 
     StorageReference pathReference;
 
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<Map<String, Object>> objectArray;
 
+    ImageView image;
 
     String selectedObject;
     FeedActivity.Adapter adapter;
@@ -65,7 +72,33 @@ public class FeedActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         pathReference = null;
-        getDBInfo();
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+
+//        mAuth.signOut();
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInAnonymously:success");
+                            user = mAuth.getCurrentUser();
+                            getDBInfo();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInAnonymously:failure", task.getException());
+                            Toast.makeText(FeedActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //getDBInfo();
+                        }
+
+                        // ...
+                    }
+                });
+//        getDBInfo();
 
     }
 
@@ -96,31 +129,33 @@ public class FeedActivity extends AppCompatActivity {
         public void bind(Map<String, Object> obj) {
 
             if(obj.containsKey("imageURL")) {
-                // downloading the image from the cloud storage
-                // Create a reference with an initial file path and name
-                pathReference = null;
-                pathReference = storageRef.child(obj.get("imageURL").toString());
-//                Log.d(TAG, "Tried to add an image " + pathReference );
-                final long ONE_MEGABYTE = 1024 * 1024;
-                pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] byteArray) {
-                        // Data for "images/island.jpg" is returns, use this as needed
-                        Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                        ImageView image = findViewById(R.id.post_image);
+                image = null;
+//                while(image == null) {
+                    // downloading the image from the cloud storage
+                    // Create a reference with an initial file path and name
+                    pathReference = storageRef.child(obj.get("imageURL").toString());
+                    Log.d(TAG, "Tried to add an image " + pathReference);
+                    final long ONE_MEGABYTE = 1024 * 1024;
+                    pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                        @Override
+                        public void onSuccess(byte[] byteArray) {
+                            // Data for "images/island.jpg" is returns, use this as needed
+                            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                            image = findViewById(R.id.post_image);
 
 //                        ImageView image = (ImageView) findViewById(R.id.imageView1);
-                        image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                        Log.d(TAG, "FAILED HERE" + pathReference);
+                            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
+                            Log.d(TAG, "Successfully added " + pathReference);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle any errors
+                            Log.d(TAG, "FAILED HERE" + pathReference);
 
-                    }
-                });
-
+                        }
+                    });
+//                }
             }
             final TextView item = itemView.findViewById(R.id.postTv);
             item.setText(obj.get("description").toString());
@@ -181,7 +216,7 @@ public class FeedActivity extends AppCompatActivity {
             adapter = new Adapter();
             rvAssignment.setAdapter(adapter);
         } else {
-            Toast.makeText(this, "Probelms!!!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Empty database!!!", Toast.LENGTH_SHORT).show();
         }
     }
 
