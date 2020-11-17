@@ -130,6 +130,8 @@ public class FeedActivity extends AppCompatActivity {
         Map<String, Object> currentObj;
         public void bind(Map<String, Object> obj) {
             currentObj = obj;
+            final TextView item = itemView.findViewById(R.id.postTv);;
+            final TextView itemTitle = itemView.findViewById(R.id.titleTv);;
 
             if(obj.containsKey("imageURL")) {
                 image = null;
@@ -150,12 +152,8 @@ public class FeedActivity extends AppCompatActivity {
                             image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
                             Log.d(TAG, "Successfully added " + pathReference);
 
-
-                            final TextView item = itemView.findViewById(R.id.postTv);
                             item.setText(currentObj.get("description").toString());
-                            final TextView itemTitle = itemView.findViewById(R.id.titleTv);
                             itemTitle.setText(currentObj.get("title").toString());
-
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -169,33 +167,31 @@ public class FeedActivity extends AppCompatActivity {
 //                }
             }//if
             else {
-                final TextView item = itemView.findViewById(R.id.postTv);
-                item.setText(obj.get("description").toString());
-                final TextView itemTitle = itemView.findViewById(R.id.titleTv);
-                itemTitle.setText(obj.get("title").toString());
+                item.setText(currentObj.get("description").toString());
+                itemTitle.setText(currentObj.get("title").toString());
             }
                 //make item clickable
-//                itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        //save selected object
-//                        selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
-//                        Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
-//
-//                        //change text color of selected item
-//                        item.setTextColor(Color.parseColor("#FFFFFF"));
-//                        if (!firstClick) {
-//                            lastItem.setTextColor(Color.parseColor("#000000"));
-//                        } else {
-//                            firstClick = false;
-//                        }
-//                        if (lastObjPos == getAdapterPosition()) {
-//                            item.setTextColor(Color.parseColor("#FFFFFF"));
-//                        }
-//                        lastItem = item;
-//                        lastObjPos = getAdapterPosition();
-//                    }
-//                });
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //save selected object
+                        selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
+                        Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
+
+                        //change text color of selected item
+                        item.setTextColor(Color.parseColor("#FFFFFF"));
+                        if (!firstClick) {
+                            lastItem.setTextColor(Color.parseColor("#000000"));
+                        } else {
+                            firstClick = false;
+                        }
+                        if (lastObjPos == getAdapterPosition()) {
+                            item.setTextColor(Color.parseColor("#FFFFFF"));
+                        }
+                        lastItem = item;
+                        lastObjPos = getAdapterPosition();
+                    }
+                });
 
         }//bind()
     }
