@@ -3,6 +3,7 @@ package com.example.cst438_meditationapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,7 +24,8 @@ public class Meditation2Screens extends AppCompatActivity {
     private Timer timer;
     private int page = 0;
 
-    private MeditationAdapter mediationAdapter;
+    private MeditationAdapter meditationAdapter;
+    private MediaPlayer meditation2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +35,22 @@ public class Meditation2Screens extends AppCompatActivity {
 
         ConstraintLayout constraintLayout = findViewById(R.id.layout);
 
+        meditation2 = MediaPlayer.create(this, R.raw.meditation2);
+
         AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
 
+
+
+
         mViewPager = findViewById(R.id.slideViewPager);
         doneBtn = findViewById(R.id.doneBtn);
 
-        mediationAdapter = new MeditationAdapter(this);
+        meditationAdapter = new MeditationAdapter(this);
 
-        mViewPager.setAdapter(mediationAdapter);
+        mViewPager.setAdapter(meditationAdapter);
 
         mViewPager.addOnPageChangeListener(viewListener);
         final Handler handler = new Handler();
@@ -51,6 +58,10 @@ public class Meditation2Screens extends AppCompatActivity {
             public void run() {
                 if (page == 14) {
                     timer.cancel();
+                    musicStop();
+                }
+                if (page == 0) {
+                    musicStart();
                 }
                 mViewPager.setCurrentItem(page++, true);
             }
@@ -63,8 +74,18 @@ public class Meditation2Screens extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 5000, 5000);
+        }, 6000, 6000);
 
+    }
+
+    public void musicStart(){
+        meditation2.start();
+    }
+
+    public void musicStop()
+    {
+        meditation2.stop();
+        meditation2 = MediaPlayer.create(this, R.raw.meditation1);
     }
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {

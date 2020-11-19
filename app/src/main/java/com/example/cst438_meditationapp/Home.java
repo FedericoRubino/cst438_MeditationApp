@@ -22,6 +22,11 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startMeditation1(View view){
+        Intent intent = Meditation1Start.getIntent(this,"");
+        startActivity(intent);
+    }
+
 
     public void startFeed(View view){
         Intent intent = FeedActivity.getIntent(this,"");
