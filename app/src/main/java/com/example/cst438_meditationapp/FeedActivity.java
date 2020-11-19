@@ -166,7 +166,7 @@ public class FeedActivity extends AppCompatActivity {
 //                while(image == null) {
                     // downloading the image from the cloud storage
                     // Create a reference with an initial file path and name
-                    pathReference = storageRef.child(obj.get("imageURL").toString());
+                    pathReference = storageRef.child(currentObj.get("imageURL").toString());
                     Log.d(TAG, "Tried to add an image " + pathReference);
                     final long ONE_MEGABYTE = 2024 * 2024;
                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cst438_meditationapp">
-
-    <!--app uses camera-->
-    <uses-feature android:name="android.hardware.camera"
+    <!-- app uses camera -->
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS"
+
+    <uses-permission
+        android:name="android.permission.MANAGE_DOCUMENTS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -17,7 +19,9 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddPostActivity"></activity>
+        <activity android:name=".Meditation1Screens"></activity>
+        <activity android:name=".Meditation1Start" />
+        <activity android:name=".AddPostActivity" />
         <activity android:name=".FeedActivity" />
         <activity android:name=".Home" />
         <activity android:name=".Meditation2Screens" />
