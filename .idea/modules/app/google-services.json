@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "284698028810",
+    "firebase_url": "https://cst438meditationapp.firebaseio.com",
+    "project_id": "cst438meditationapp",
+    "storage_bucket": "cst438meditationapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284698028810:android:0931f58cddef8a461468f3",
+        "android_client_info": {
+          "package_name": "com.example.cst438_meditationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284698028810-91mh2pgtpgau7krremjv10k4lgn4d2ks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cst438_meditationapp",
+            "certificate_hash": "063642ba01d9058e4469aec32bfe0fef0f5bd400"
+          }
+        },
+        {
+          "client_id": "284698028810-ja8dsnaimvip12g8gem9dhkrt3m5okba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4ZfE7tN79PpfGxb3G3iHTIV3NtAF0xoI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284698028810-ja8dsnaimvip12g8gem9dhkrt3m5okba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

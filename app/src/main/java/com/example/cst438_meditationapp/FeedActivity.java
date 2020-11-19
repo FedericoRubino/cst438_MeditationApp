@@ -15,9 +15,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -100,7 +104,29 @@ public class FeedActivity extends AppCompatActivity {
                 });
 //        getDBInfo();
 
-    }
+        final Switch toggle = (Switch) findViewById(R.id.filter_button);
+        toggle.setText("All Posts");
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    toggle.setText("Your Posts");
+                    // The toggle is enabled
+                    //filter posts in objectArray by current user primary key
+
+                    // notify recycler view that list of assignments has changed
+//                    adapter.notifyDataSetChanged();
+                } else {
+                    toggle.setText("All Posts");
+                    // The toggle is disabled
+                    //show all posts
+
+                    // notify recycler view that list of assignments has changed
+//                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+    }//onCreate
 
 
     private class Adapter  extends RecyclerView.Adapter<FeedActivity.ItemHolder> {
@@ -128,6 +154,8 @@ public class FeedActivity extends AppCompatActivity {
 
 
         Map<String, Object> currentObj;
+        Bitmap bmp;
+        byte[] currentByteArray;
         public void bind(Map<String, Object> obj) {
             currentObj = obj;
             final TextView item = itemView.findViewById(R.id.postTv);;
@@ -138,17 +166,17 @@ public class FeedActivity extends AppCompatActivity {
 //                while(image == null) {
                     // downloading the image from the cloud storage
                     // Create a reference with an initial file path and name
-                    pathReference = storageRef.child(obj.get("imageURL").toString());
+                    pathReference = storageRef.child(currentObj.get("imageURL").toString());
                     Log.d(TAG, "Tried to add an image " + pathReference);
-                    final long ONE_MEGABYTE = 1024 * 1024;
+                    final long ONE_MEGABYTE = 2024 * 2024;
                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] byteArray) {
-                            // Data for "images/island.jpg" is returns, use this as needed
-                            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-                            image = itemView.findViewById(R.id.post_image);
-
+                            currentByteArray = byteArray;
 //                        ImageView image = (ImageView) findViewById(R.id.imageView1);
+                            // Data for "images/island.jpg" is returns, use this as needed
+                            bmp = BitmapFactory.decodeByteArray(currentByteArray, 0, currentByteArray.length);
+                            image = itemView.findViewById(R.id.post_image);
                             image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
                             Log.d(TAG, "Successfully added " + pathReference);
 
@@ -161,7 +189,6 @@ public class FeedActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception exception) {
                             // Handle any errors
                             Log.d(TAG, "FAILED HERE" + pathReference);
-
                         }
                     });
 //                }
