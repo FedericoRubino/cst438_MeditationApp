@@ -1,8 +1,21 @@
 package com.example.cst438_meditationapp;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import android.content.Context;
+import android.util.Log;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.HashMap;
+
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -18,15 +31,15 @@ public class ExampleInstrumentedTest {
 //        newUser = new HashMap<>();
 //        newUser.put("username", "cst");
 //        newUser.put("password", "cst123");
-//        Util.addUserToDB(db, newUser);
+//        boolean b = Util.addUserToDB(db, newUser);
 //    }
-//
+
 //    @Test
 //    public void useAppContext() {
 //        // Context of the app under test.
 //        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 //    }
-//
+
 //    @Test
 //    public void testUsername() {
 //        assertTrue(Util.checkForUserInDB(db, newUser));
