@@ -106,7 +106,7 @@ public class AddPostActivity extends AppCompatActivity {
             return;
         }
         // this where the upload to the database happens
-        String url = uploadImage(description.substring(2,7));
+        String url = uploadImage();
         Toast.makeText(this, "The image url is: " + url,Toast.LENGTH_SHORT).show();
         if(Util.addPostToDB(db, title, description, url)){
             Toast.makeText(this,"You have successfully created a new post", Toast.LENGTH_SHORT).show();
@@ -169,8 +169,8 @@ public class AddPostActivity extends AppCompatActivity {
     }
 
 
-    public String uploadImage(String code){
-        String url = "images/" +code+"/"+ mTitle.getText().toString();
+    public String uploadImage(){
+        String url = "images/"+ mTitle.getText().toString();
         StorageReference tempRef = storageRef.child(url);
 
         // Get the data from an ImageView as bytes
