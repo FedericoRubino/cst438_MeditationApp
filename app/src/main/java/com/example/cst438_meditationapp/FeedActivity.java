@@ -160,6 +160,8 @@ public class FeedActivity extends AppCompatActivity {
             currentObj = obj;
             final TextView item = itemView.findViewById(R.id.postTv);;
             final TextView itemTitle = itemView.findViewById(R.id.titleTv);;
+            final TextView itemUsername = itemView.findViewById(R.id.tvUsername);;
+            final TextView itemLikeCount = itemView.findViewById(R.id.tvLikeCount);;
 
             if(obj.containsKey("imageURL")) {
                 image = null;
@@ -177,11 +179,13 @@ public class FeedActivity extends AppCompatActivity {
                             // Data for "images/island.jpg" is returns, use this as needed
                             bmp = BitmapFactory.decodeByteArray(currentByteArray, 0, currentByteArray.length);
                             image = itemView.findViewById(R.id.post_image);
-                            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, image.getWidth(), image.getHeight(), false));
+                            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, 130, 130, false));
                             Log.d(TAG, "Successfully added " + pathReference);
 
                             item.setText(currentObj.get("description").toString());
                             itemTitle.setText(currentObj.get("title").toString());
+                            itemUsername.setText(currentObj.get("postUser").toString());
+                            itemLikeCount.setText(currentObj.get("likeCount").toString());
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -196,6 +200,8 @@ public class FeedActivity extends AppCompatActivity {
             else {
                 item.setText(currentObj.get("description").toString());
                 itemTitle.setText(currentObj.get("title").toString());
+                itemUsername.setText(currentObj.get("postUser").toString());
+                itemLikeCount.setText(currentObj.get("likeCount").toString());
             }
                 //make item clickable
                 itemView.setOnClickListener(new View.OnClickListener() {

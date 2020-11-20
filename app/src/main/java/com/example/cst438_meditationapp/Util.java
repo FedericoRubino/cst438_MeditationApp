@@ -91,14 +91,18 @@ public class Util {
     }
 
     public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
-        HashMap<String, Object> newUser = new HashMap<>();
-        newUser.put("title", title);
-        newUser.put("description", description);
-        newUser.put("imageURL", imageURL);
+        HashMap<String, Object> newPost = new HashMap<>();
+        newPost.put("title", title);
+        newPost.put("description", description);
+        newPost.put("imageURL", imageURL);
+        newPost.put("postUser", LoginActivity.loggedUser);
+        newPost.put("likeCount", 0);
+
+
 
         // Add a new document with a generated ID
         db.collection("posts")
-                .add(newUser)
+                .add(newPost)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
