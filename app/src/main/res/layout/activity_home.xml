@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorNavyBackgroud"
     tools:context=".Home">
-
     <Button
         android:id="@+id/feedBtn"
         android:layout_width="wrap_content"

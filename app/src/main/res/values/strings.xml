@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReMi</string>
+    <string name="app_name"></string>
     <string name="login"><u>Login</u></string>
     <string name="username"><u>Username</u></string>
     <string name="password"><u>Password</u></string>
@@ -19,5 +19,7 @@
     <string name="sample_text">Sample text...</string>
     <string name="lotus">lotus</string>
     <string name="register">Register</string>
+    <string name="camera">Camera</string>
+    <string name="profile">Profile</string>
 
 </resources>

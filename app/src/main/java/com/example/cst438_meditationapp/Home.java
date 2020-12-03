@@ -3,6 +3,7 @@ package com.example.cst438_meditationapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,11 +37,20 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     // Intent factory
     public static Intent getIntent(Context context, String val){
         Intent intent = new Intent(context, Home.class);
         intent.putExtra(EXTRA, val);
         return intent;
+    }
+
+    public void startFeed(MenuItem item) {
+        Intent intent = FeedActivity.getIntent(this,"");
+        startActivity(intent);
+    }
+
+    public void startHome(MenuItem item) {
+        Intent intent = Home.getIntent(this,"");
+        startActivity(intent);
     }
 }
