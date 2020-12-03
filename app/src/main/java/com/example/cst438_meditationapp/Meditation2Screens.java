@@ -123,4 +123,9 @@ public class Meditation2Screens extends AppCompatActivity {
         intent.putExtra(EXTRA, val);
         return intent;
     }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        meditation2.stop();
+    }
 }
