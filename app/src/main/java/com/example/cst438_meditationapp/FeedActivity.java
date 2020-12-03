@@ -59,6 +59,10 @@ public class FeedActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<Map<String, Object>> objectArray;
 
+    List<Map<String, Object>> userPostsArray;
+    boolean firstFilter = true;
+    List<Map<String, Object>> displayedList;
+
     ImageView image;
 
     String selectedObject;
@@ -76,7 +80,7 @@ public class FeedActivity extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         pathReference = null;
-
+        userPostsArray = new ArrayList<>();
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -91,6 +95,7 @@ public class FeedActivity extends AppCompatActivity {
                             Log.d(TAG, "signInAnonymously:success");
                             user = mAuth.getCurrentUser();
                             getDBInfo();
+                            displayedList = objectArray;
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInAnonymously:failure", task.getException());
@@ -108,21 +113,28 @@ public class FeedActivity extends AppCompatActivity {
         toggle.setText("All Posts");
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
+                if(isChecked) {
                     toggle.setText("Your Posts");
                     // The toggle is enabled
                     //filter posts in objectArray by current user primary key
-
-                    // notify recycler view that list of assignments has changed
-//                    adapter.notifyDataSetChanged();
+                    if(firstFilter) {
+                        for (Map<String, Object> currObj : objectArray) {
+//                            if (currObj.get("postUser").toString() == LoginActivity.loggedUser) {
+                            if (LoginActivity.loggedUser.equals(currObj.get("postUser"))) {
+                                userPostsArray.add(currObj);
+                                Toast.makeText(FeedActivity.this, currObj.get("postUser").toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        firstFilter = false;
+                    }
+                    displayedList = userPostsArray;
                 } else {
                     toggle.setText("All Posts");
                     // The toggle is disabled
                     //show all posts
-
-                    // notify recycler view that list of assignments has changed
-//                    adapter.notifyDataSetChanged();
+                    displayedList = objectArray;
                 }
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -139,11 +151,11 @@ public class FeedActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(FeedActivity.ItemHolder holder, int position){
-            holder.bind(objectArray.get(position));
+                holder.bind(displayedList.get(position));
         }
 
         @Override
-        public int getItemCount() { return objectArray.size(); }
+        public int getItemCount() { return displayedList.size(); }
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder {
@@ -208,7 +220,7 @@ public class FeedActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //save selected object
-                        selectedObject = objectArray.get(getAdapterPosition()).get("title").toString();
+                        selectedObject = displayedList.get(getAdapterPosition()).get("title").toString();
                         Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
 
                         //change text color of selected item
