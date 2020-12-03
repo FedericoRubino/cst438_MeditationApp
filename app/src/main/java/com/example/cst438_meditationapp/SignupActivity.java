@@ -23,6 +23,16 @@ import static android.content.ContentValues.TAG;
 
 public class SignupActivity extends AppCompatActivity {
 
+
+    final String difficultPassword = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z[0-9]]{6,}$";
+    final String difficultPasswordMessage = "Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+
+    final String mediumPassword = "^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z[0-9]]{6,}$";
+    final String mediumPasswordMessage = "Minimum six characters, at least one uppercase letter, one lowercase letter, and one number";
+
+    final String easyPassword = "^(?=.*[A-Za-z])[A-Za-z[0-9]]{6,}$";
+    final String easyPasswordMessage = "Minimum six characters, at least one uppercase letter, and one lowercase letter";
+
     public static final String EXTRA = "SIGN IN EXTRA";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -41,14 +51,21 @@ public class SignupActivity extends AppCompatActivity {
 
     // create a new user method
     public void createUserAccount(View view){
+
         final String username = mUsername.getText().toString();
         if(username.equals("")){
             Toast.makeText(this,"Username is missing", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (username.length() < 4){
+            Toast.makeText(this,"Username has to be at least of length 4.", Toast.LENGTH_SHORT).show();
             return;
         }
         final String password = mPassword.getText().toString();
         if(password.equals("")){
             Toast.makeText(this,"Password is missing", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!password.matches(mediumPassword)){
+            Toast.makeText(this, mediumPasswordMessage, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -66,7 +83,7 @@ public class SignupActivity extends AppCompatActivity {
                             }
                             if(Util.addUserToDB(db, username,password)){
                                 Toast.makeText(SignupActivity.this, "You have successfully created a new user", Toast.LENGTH_SHORT).show();
-                                goToHomePage();
+                                goToLoginPage();
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -75,9 +92,16 @@ public class SignupActivity extends AppCompatActivity {
                 });
     }
 
-    public void goToHomePage(){
+    /**
+     * Method that sends the user to the login page
+     */
+    public void goToLoginPage(){
         Intent intent = LoginActivity.getIntent(this, "");
         startActivity(intent);
+    }
+
+    public void loginButton(View view){
+        goToLoginPage();
     }
 
 

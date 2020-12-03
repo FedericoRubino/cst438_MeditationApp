@@ -19,5 +19,7 @@
     <string name="sample_text">Sample text...</string>
     <string name="lotus">lotus</string>
     <string name="register">Register</string>
+    <string name="alreadyAccount">Already have an account?</string>
+    <string name="noAccount">Don\'t have an account yet?</string>
 
 </resources>

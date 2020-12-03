@@ -7,54 +7,73 @@
     tools:context=".LoginActivity"
     android:background="@color/colorNavyBackgroud">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="@string/loginPage"
-        android:textAllCaps="true"
-        android:textColor="@color/colorGrey"
-        />
-
     <EditText
         android:id="@+id/usernameLoginEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_height="65dp"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
         android:hint="@string/username"
         android:textAlignment="center"
-        android:textColor="@color/colorGrey"
-        android:textColorHint="@color/colorGrey"
+        android:textColor="@color/colorNavyBackgroud"
+        android:textColorHint="@color/colorNavyBackgroud"
         android:backgroundTint="@color/colorGrey"
-
+        android:background="@color/colorGrey"
         />
 
 
     <EditText
         android:id="@+id/passwordLoginEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/usernameLoginEt"
-        android:layout_marginTop="50dp"
         android:hint="@string/password"
-        android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColor="@color/colorGrey"
+        android:textColorHint="@color/colorNavyBackgroud"
+        android:textColor="@color/colorNavyBackgroud"
         android:backgroundTint="@color/colorGrey"
+        android:background="@color/colorGrey"
 
-        android:textColorHint="@color/colorGrey" />
+        />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:text="@string/login"
         android:layout_below="@+id/passwordLoginEt"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:onClick="loginUser"
-        android:background="@drawable/rounded_corners"
+        android:background="#6BBFA7"
         android:layout_centerHorizontal="true"
+        android:id="@+id/signUpButton"
+        />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/ic_meditation2"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signUpButton"
+        android:textColor="@color/colorGrey"
+        android:text="@string/noAccount"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToSignUp"
         />
 
 
