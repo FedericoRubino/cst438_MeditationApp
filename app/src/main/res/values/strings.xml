@@ -21,5 +21,6 @@
     <string name="register">Register</string>
     <string name="alreadyAccount">Already have an account?</string>
     <string name="noAccount">Don\'t have an account yet?</string>
+    <string name="passwordRequirements">Needs upper and lowercase and one number</string>
 
 </resources>

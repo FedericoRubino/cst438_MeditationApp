@@ -15,11 +15,11 @@
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
         android:hint="@string/username"
-        android:textAlignment="center"
-        android:textColor="@color/colorNavyBackgroud"
-        android:textColorHint="@color/colorNavyBackgroud"
-        android:backgroundTint="@color/colorGrey"
-        android:background="@color/colorGrey"
+        android:padding="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/entryfields"
+
         />
 
 
@@ -32,11 +32,12 @@
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/usernameLoginEt"
         android:hint="@string/password"
-        android:textAlignment="center"
-        android:textColorHint="@color/colorNavyBackgroud"
-        android:textColor="@color/colorNavyBackgroud"
-        android:backgroundTint="@color/colorGrey"
-        android:background="@color/colorGrey"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textColorHint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/entryfields"
+
 
         />
 
@@ -50,7 +51,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:onClick="loginUser"
-        android:background="#6BBFA7"
+        android:background="@drawable/rounded_corners"
         android:layout_centerHorizontal="true"
         android:id="@+id/signUpButton"
         />

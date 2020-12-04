@@ -3,9 +3,14 @@ package com.example.cst438_meditationapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -20,6 +26,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
+import static com.example.cst438_meditationapp.R.color.colorAccent;
+import static com.example.cst438_meditationapp.R.color.colorERROR;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -36,7 +44,7 @@ public class SignupActivity extends AppCompatActivity {
     public static final String EXTRA = "SIGN IN EXTRA";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
+    TextView passwordReq;
     EditText mUsername;
     EditText mPassword;
 
@@ -45,8 +53,38 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         mUsername = findViewById(R.id.usernameSigninEt);
-        mPassword = findViewById(R.id.passwordSigninEt);
+        mPassword = findViewById(R.id.passwordInsideField);
+        passwordReq = findViewById(R.id.passwordRequirementsTV);
 
+        setupFloatingLabelError();
+    }
+
+    private void setupFloatingLabelError() {
+        final TextInputLayout floatingUsernameLabel = (TextInputLayout) findViewById(R.id.passwordSigninEt);
+        floatingUsernameLabel.getEditText().addTextChangedListener(new TextWatcher() {
+            // ...
+            @Override
+            public void onTextChanged(CharSequence text, int start, int count, int after) {
+                if (!text.toString().matches(mediumPassword)) {
+                    floatingUsernameLabel.setErrorEnabled(true);
+                    passwordReq.setTextColor(getResources().getColor(R.color.colorERROR));
+                } else {
+                    floatingUsernameLabel.setErrorEnabled(false);
+                    passwordReq.setTextColor(getResources().getColor(R.color.colorGrey));
+
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     // create a new user method
