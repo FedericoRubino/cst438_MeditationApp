@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Map<String, Object> user = document.getData();
                                 if(mUsername.getText().toString().equals(user.get("username")) && mPassword.getText().toString().equals(user.get("password"))){
 //                                    Toast.makeText(this,"You have succesfully logged in!!", Toast.LENGTH_SHORT).show();
-                                    loggedUser = user.get("username").toString();
+                                    loggedUser = mUsername.getText().toString();
 
                                     goToHomePage();
                                     return;
