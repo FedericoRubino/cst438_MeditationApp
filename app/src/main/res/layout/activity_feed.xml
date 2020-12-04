@@ -6,42 +6,44 @@
     android:layout_height="match_parent"
     android:background="@color/colorGrey">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feed_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="414dp"
+        android:layout_height="473dp"
+        android:layout_marginTop="2dp"
         android:background="@color/colorNavyBackgroud"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/filter_button" />
 
     <Button
         android:id="@+id/button2"
-        android:backgroundTint="@color/colorDarkBlue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/colorDarkBlue"
+        android:onClick="addPost"
+        android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feed_recycler_view"
-        android:text="ADD"
-        android:onClick="addPost"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/feed_recycler_view" />
 
     <Switch
         android:id="@+id/filter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="4dp"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/feed_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

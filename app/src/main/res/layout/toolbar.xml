@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/colorWhite"
-    android:elevation="4dp" android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    android:background="@color/colorWhite">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="47dp"
+            android:layout_height="34dp"
+            android:layout_margin="18dp"
+            android:onClick="startFeed"
+            android:background="@drawable/cameraicon" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="68dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:onClick="startHome"
+            android:background="@drawable/homebutton" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="42dp"
+            android:layout_height="39dp"
+            android:layout_margin="18dp"
+            android:background="@drawable/usericon" />
+    </LinearLayout>
 </androidx.appcompat.widget.Toolbar>
