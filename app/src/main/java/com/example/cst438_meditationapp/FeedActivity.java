@@ -1,10 +1,5 @@
 package com.example.cst438_meditationapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,17 +8,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +37,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -108,6 +106,8 @@ public class FeedActivity extends AppCompatActivity {
                     }
                 });
 //        getDBInfo();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         final Switch toggle = (Switch) findViewById(R.id.filter_button);
         toggle.setText("All Posts");
@@ -139,6 +139,13 @@ public class FeedActivity extends AppCompatActivity {
         });
 
     }//onCreate
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.top_nav, menu);
+//        return true;
+//    }
 
 
     private class Adapter  extends RecyclerView.Adapter<FeedActivity.ItemHolder> {
@@ -288,5 +295,15 @@ public class FeedActivity extends AppCompatActivity {
         Intent intent = new Intent(context, FeedActivity.class);
         intent.putExtra("EXTRA", val);
         return intent;
+    }
+
+    public void startFeed(MenuItem item) {
+        Intent intent = FeedActivity.getIntent(this,"");
+        startActivity(intent);
+    }
+
+    public void startHome(MenuItem item) {
+        Intent intent = Home.getIntent(this,"");
+        startActivity(intent);
     }
 }
