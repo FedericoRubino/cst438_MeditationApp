@@ -19,6 +19,7 @@
         android:textColorHint="@color/colorAccent"
         android:textColor="@color/colorAccent"
         android:background="@drawable/entryfields"
+        android:fontFamily="@font/comfortaa_bold"
 
         />
 
@@ -30,6 +31,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/usernameLoginEt"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -37,32 +39,35 @@
         android:textColorHint="@color/colorAccent"
         android:textColor="@color/colorAccent"
         android:background="@drawable/entryfields"
+        android:fontFamily="@font/comfortaa_bold"
+
 
 
         />
 
     <Button
+        android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:text="@string/login"
         android:layout_below="@+id/passwordLoginEt"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:onClick="loginUser"
-        android:background="@drawable/rounded_corners"
         android:layout_centerHorizontal="true"
-        android:id="@+id/signUpButton"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_corners"
+        android:onClick="loginUser"
+        android:text="@string/login"
+        android:fontFamily="@font/comfortaa_bold"
         />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_meditation2"
-        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/remi_logo"
+        android:layout_marginTop="40dp"
         />
 
     <TextView
@@ -75,6 +80,8 @@
         android:layout_marginRight="20dp"
         android:layout_centerHorizontal="true"
         android:onClick="goToSignUp"
+        android:fontFamily="@font/comfortaa_bold"
+
         />
 
 
