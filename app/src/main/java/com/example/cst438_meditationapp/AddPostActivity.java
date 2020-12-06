@@ -62,7 +62,7 @@ public class AddPostActivity extends AppCompatActivity {
         final boolean hasCamera = getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
 
         //initialize variables for add image feature
-//        imageView = findViewById(R.id.image_view);
+        imageView = findViewById(R.id.image_view);
         imgButton = findViewById(R.id.img_button);
 
         //listener for add image button

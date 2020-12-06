@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -225,21 +224,8 @@ public class FeedActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //save selected object
-                        selectedObject = displayedList.get(getAdapterPosition()).get("title").toString();
-                        Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
-
-                        //change text color of selected item
-                        item.setTextColor(Color.parseColor("#FFFFFF"));
-                        if (!firstClick) {
-                            lastItem.setTextColor(Color.parseColor("#000000"));
-                        } else {
-                            firstClick = false;
-                        }
-                        if (lastObjPos == getAdapterPosition()) {
-                            item.setTextColor(Color.parseColor("#FFFFFF"));
-                        }
-                        lastItem = item;
-                        lastObjPos = getAdapterPosition();
+                        selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
+                        startActivity(PostDetails.getIntent(FeedActivity.this,selectedObject));
                     }
                 });
 

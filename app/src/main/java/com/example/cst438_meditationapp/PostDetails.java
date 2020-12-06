@@ -3,6 +3,7 @@ package com.example.cst438_meditationapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +17,8 @@ public class PostDetails extends AppCompatActivity {
         setContentView(R.layout.activity_post_details);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
-        Object post = intent.getStringExtra("EXTRA");
-
+        String post = intent.getStringExtra("EXTRA");
+        Toast.makeText(this, post, Toast.LENGTH_SHORT).show();
     }
 
     // Intent factory

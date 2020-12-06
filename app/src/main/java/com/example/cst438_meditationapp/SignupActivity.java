@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Map;
-
 import static android.content.ContentValues.TAG;
-import static com.example.cst438_meditationapp.R.color.colorAccent;
-import static com.example.cst438_meditationapp.R.color.colorERROR;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -107,6 +101,8 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+
+
         db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -119,6 +115,7 @@ public class SignupActivity extends AppCompatActivity {
                                     return;
                                 }
                             }
+
                             if(Util.addUserToDB(db, username,password)){
                                 Toast.makeText(SignupActivity.this, "You have successfully created a new user", Toast.LENGTH_SHORT).show();
                                 goToLoginPage();
