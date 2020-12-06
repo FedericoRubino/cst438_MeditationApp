@@ -8,77 +8,95 @@
     android:background="@color/colorNavyBackgroud">
 
     <TextView
+        android:id="@+id/layoutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center"
         android:text="@string/createPost"
         android:textAllCaps="true"
         android:textColor="@color/colorGrey"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
     <EditText
         android:id="@+id/titleEt"
-        android:layout_width="match_parent"
+        android:layout_width="373dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_below="@id/img_button"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="37dp"
+        android:background="@drawable/entryfields"
+        android:fontFamily="@font/comfortaa_bold"
         android:hint="Title"
-        android:textAlignment="center"
+        android:padding="10dp"
+        android:textAlignment="viewStart"
         android:textColor="@color/colorGrey"
-        android:textColorHint="@color/colorGrey"
-        android:backgroundTint="@color/colorGrey"
-        />
+        android:textColorHint="@color/colorGrey" />
 
     <EditText
         android:id="@+id/descriptionEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image_view"
-        android:layout_marginTop="62dp"
-        android:hint="Write a few words describing it"
-        android:textColorHint="@color/colorGrey"
-        android:backgroundTint="@color/colorGrey"
-        android:textColor="@color/colorGrey"
+        android:layout_width="378dp"
+        android:layout_height="145dp"
+        android:layout_below="@id/titleEt"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="43dp"
+        android:background="@drawable/entryfields"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="top"
+        android:hint="Write a caption..."
         android:inputType="textMultiLine"
-        android:textAlignment="center" />
+        android:padding="10dp"
+        android:textColor="@color/colorGrey"
+        android:textColorHint="@color/colorGrey" />
 
-    <Button
-        android:layout_width="200dp"
+    <TextView
+        android:layout_width="94dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/descriptionEt"
-        android:layout_marginTop="9dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="22dp"
+        android:backgroundTint="#00FFFFFF"
+        android:fontFamily="@font/comfortaa_bold"
         android:onClick="createPost"
-        android:text="POST"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/rounded_corners"
-        />
+        android:text="Share"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent" />
 
     <Button
         android:id="@+id/img_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleEt"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="305dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="27dp"
-        android:text="ADD IMG"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/image_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_corners"
-        />
+        android:text="ADD IMG" />
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:layout_below="@+id/titleEt"
-        android:background="@color/colorTransparentWhite"
+        android:layout_width="216dp"
+        android:layout_height="212dp"
+        android:layout_below="@+id/layoutTitle"
         android:layout_centerHorizontal="true"
-        android:layout_margin="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTransparentWhite"
         android:padding="10dp"
         app:srcCompat="@drawable/mediations_icon" />
+
 
 </RelativeLayout>

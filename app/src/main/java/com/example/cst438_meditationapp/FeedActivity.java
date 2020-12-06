@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -122,7 +121,6 @@ public class FeedActivity extends AppCompatActivity {
 //                            if (currObj.get("postUser").toString() == LoginActivity.loggedUser) {
                             if (LoginActivity.loggedUser.equals(currObj.get("postUser"))) {
                                 userPostsArray.add(currObj);
-                                Toast.makeText(FeedActivity.this, currObj.get("postUser").toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
                         firstFilter = false;
@@ -297,12 +295,12 @@ public class FeedActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void startFeed(MenuItem item) {
+    public void startFeed(View v) {
         Intent intent = FeedActivity.getIntent(this,"");
         startActivity(intent);
     }
 
-    public void startHome(MenuItem item) {
+    public void startHome(View v) {
         Intent intent = Home.getIntent(this,"");
         startActivity(intent);
     }

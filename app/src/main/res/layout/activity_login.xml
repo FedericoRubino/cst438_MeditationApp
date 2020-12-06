@@ -11,17 +11,19 @@
         android:id="@+id/usernameLoginEt"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_margin="20dp"
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/entryfields"
+
+        android:fontFamily="@font/comfortaa_bold"
         android:hint="@string/username"
         android:padding="15dp"
-        android:textColorHint="@color/colorAccent"
         android:textColor="@color/colorAccent"
-        android:background="@drawable/entryfields"
-        android:fontFamily="@font/comfortaa_bold"
-
-        />
+        android:textColorHint="@color/colorAccent" />
 
 
     <EditText
@@ -66,7 +68,7 @@
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/remi_logo"
+        app:srcCompat="@drawable/remi_01"
         android:layout_marginTop="40dp"
         />
 
