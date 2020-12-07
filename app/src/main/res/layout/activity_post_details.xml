@@ -1,18 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostDetails">
+    tools:context=".AddPostActivity"
+    android:background="@color/colorNavyBackgroud">
 
-    <Button
-        android:id="@+id/button"
+    <TextView
+        android:id="@+id/postTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="center"
+        android:text="Title"
+        android:textAllCaps="true"
+        android:textColor="@color/colorGrey"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/editButton"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="22dp"
+        android:backgroundTint="#00FFFFFF"
+        android:enabled="false"
+        android:fontFamily="@font/comfortaa_bold"
+        android:onClick="createPost"
+        android:text="Edit"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="216dp"
+        android:layout_height="212dp"
+        android:layout_below="@+id/postTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorTransparentWhite"
+        android:padding="10dp"
+        app:srcCompat="@drawable/mediations_icon" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="195dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/image_view"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="127dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:gravity="top"
+        android:padding="10dp"
+        android:text="Author"
+        android:textColor="@color/colorGrey"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="322dp"
+        android:layout_height="165dp"
+        android:layout_below="@+id/username"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="142dp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="Description"
+        android:textColor="@color/colorGrey" />
+
+
+</RelativeLayout>
