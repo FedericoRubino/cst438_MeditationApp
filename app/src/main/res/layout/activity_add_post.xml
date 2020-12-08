@@ -78,6 +78,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_below="@+id/image_view"
+        android:fontFamily="@font/comfortaa_bold"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="160dp"

@@ -117,7 +117,7 @@ public class Util {
 
                 });
 
-        newPost.put("id", id);
+        newPost.put("id", id + "");
 
         // Add a new document with a generated ID
         db.collection("posts")

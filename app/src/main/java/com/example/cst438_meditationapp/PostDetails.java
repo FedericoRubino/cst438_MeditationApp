@@ -7,13 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,7 +32,6 @@ public class PostDetails extends AppCompatActivity {
     private String username = LoginActivity.loggedUser;
     private String postID;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private boolean flag = false;
     StorageReference storageRef;
     StorageReference pathReference;
     FirebaseStorage storage;
@@ -45,14 +42,13 @@ public class PostDetails extends AppCompatActivity {
         setContentView(R.layout.activity_post_details);
         Intent intent = getIntent();
         postID = intent.getStringExtra("EXTRA");
-        Toast.makeText(this, postID, Toast.LENGTH_SHORT).show();
         editButton = findViewById(R.id.editButton);
         author = findViewById(R.id.username);
         description = findViewById(R.id.description);
         post = findViewById(R.id.image_view);
         title = findViewById(R.id.postTitle);
-        setButton();
         setUpDisplay();
+        setButton();
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
         pathReference = null;
@@ -65,25 +61,14 @@ public class PostDetails extends AppCompatActivity {
         return intent;
     }
 
-    public void setButton(){
-        if(checkForUser())
-        {
-            editButton.setEnabled(true);
-            editButton.setVisibility(View.VISIBLE);
-        }
+    public void editActivity(View view){
+        Intent intent = EditPostActivity.getIntent(this, postID);
+        startActivity(intent);
     }
 
-    public boolean checkForUser(){
-        db.collection("posts")
-                .whereEqualTo("id", postID).whereEqualTo("postUser", username)
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        flag = true;
-                    }
-                });
-        return flag;
+    public void setButton(){
+            editButton.setEnabled(true);
+            editButton.setVisibility(View.VISIBLE);
     }
 
     public void setUpDisplay(){
@@ -94,7 +79,6 @@ public class PostDetails extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Toast.makeText(PostDetails.this, "In loop", Toast.LENGTH_SHORT).show();
                                 Map<String, Object> object = document.getData();
                                 if(object.get("id").equals(postID)) {
                                     //pathReference = storageRef.child(object.get("imageURL").toString());
@@ -102,6 +86,10 @@ public class PostDetails extends AppCompatActivity {
                                     title.setText((String) object.get("title"));
                                     description.setText((String) object.get("description"));
                                     author.setText((String) object.get("postUser"));
+
+                                    if(object.get("postUser").equals(username)){
+                                        setButton();
+                                    }
                                 }
 
                             }
