@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimary">#e5e5e5</item>
         <item name="colorPrimaryDark">@color/colorNavyBackgroud</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>

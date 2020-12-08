@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -122,7 +120,6 @@ public class FeedActivity extends AppCompatActivity {
 //                            if (currObj.get("postUser").toString() == LoginActivity.loggedUser) {
                             if (LoginActivity.loggedUser.equals(currObj.get("postUser"))) {
                                 userPostsArray.add(currObj);
-                                Toast.makeText(FeedActivity.this, currObj.get("postUser").toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
                         firstFilter = false;
@@ -227,21 +224,8 @@ public class FeedActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //save selected object
-                        selectedObject = displayedList.get(getAdapterPosition()).get("title").toString();
-                        Toast.makeText(FeedActivity.this, selectedObject, Toast.LENGTH_SHORT).show();
-
-                        //change text color of selected item
-                        item.setTextColor(Color.parseColor("#FFFFFF"));
-                        if (!firstClick) {
-                            lastItem.setTextColor(Color.parseColor("#000000"));
-                        } else {
-                            firstClick = false;
-                        }
-                        if (lastObjPos == getAdapterPosition()) {
-                            item.setTextColor(Color.parseColor("#FFFFFF"));
-                        }
-                        lastItem = item;
-                        lastObjPos = getAdapterPosition();
+                        selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
+                        startActivity(PostDetails.getIntent(FeedActivity.this,selectedObject));
                     }
                 });
 
@@ -297,12 +281,12 @@ public class FeedActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void startFeed(MenuItem item) {
+    public void startFeed(View v) {
         Intent intent = FeedActivity.getIntent(this,"");
         startActivity(intent);
     }
 
-    public void startHome(MenuItem item) {
+    public void startHome(View v) {
         Intent intent = Home.getIntent(this,"");
         startActivity(intent);
     }

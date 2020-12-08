@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
-        android:text="@string/createPost"
+        android:text="Edit Post"
         android:textAllCaps="true"
         android:textColor="@color/colorGrey"
         android:textSize="18sp"
@@ -68,10 +68,26 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/comfortaa_bold"
         android:onClick="createPost"
-        android:text="Share"
+        android:text="Save"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent" />
+    <TextView
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="295dp"
+        android:backgroundTint="#00FFFFFF"
+        android:fontFamily="@font/comfortaa_bold"
+        android:onClick="createPost"
+        android:text="Delete"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorERROR" />
 
     <Button
         android:id="@+id/img_button"
@@ -83,7 +99,8 @@
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_corners"
-        android:text="ADD IMG" />
+        android:padding="5dp"
+        android:text="CHANGE IMG" />
 
     <ImageView
         android:id="@+id/image_view"

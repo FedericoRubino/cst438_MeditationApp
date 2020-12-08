@@ -20,7 +20,7 @@ import static android.content.ContentValues.TAG;
 
 public class Util {
 
-
+    private static int id;
 
     public static boolean addUserToDB(FirebaseFirestore db, String username, String password){
         HashMap<String, Object> newUser = new HashMap<>();
@@ -98,7 +98,26 @@ public class Util {
         newPost.put("postUser", LoginActivity.loggedUser);
         newPost.put("likeCount", 0);
 
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    int i = 0;
 
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                i++;
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                        setID(i);
+                    }
+
+                });
+
+        newPost.put("id", id);
 
         // Add a new document with a generated ID
         db.collection("posts")
@@ -115,5 +134,9 @@ public class Util {
             }
         });
         return true;
+    }
+
+    public static void setID(int i){
+        id = i;
     }
 }

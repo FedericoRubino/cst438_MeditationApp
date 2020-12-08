@@ -5,7 +5,7 @@
 <style type="text/css">
 	.st0{fill:#654EA3;}
 	.st1{fill:#EAAFC8;}
-	.st2{fill:url(#SVGID_1_);}
+	.st2{fill:#232733;}
 	.st3{opacity:0.95;}
 	.st4{fill:#88BFBA;}
 	.st5{opacity:0.7;fill:#79C2BB;enable-background:new    ;}
@@ -16,19 +16,6 @@
 	C-186,132.6-195.4,142-207,142z"/>
 <path class="st1" d="M-153,310h-184c-11.5,0-21-9.5-21-21v-98.4c0-11.6,9.5-21,21-21h184c11.6,0,21,9.4,21,21V289
 	C-132,300.5-141.4,310-153,310z"/>
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="212.561" y1="-43.5062" x2="209.4706" y2="448.4843">
-	<stop  offset="0" style="stop-color:#EAAFC8"/>
-	<stop  offset="3.348215e-02" style="stop-color:#E28DC6"/>
-	<stop  offset="0.1348" style="stop-color:#C896BF"/>
-	<stop  offset="0.3058" style="stop-color:#A57CB5"/>
-	<stop  offset="0.3467" style="stop-color:#9A74B2"/>
-	<stop  offset="0.4138" style="stop-color:#8D6BAE"/>
-	<stop  offset="0.4787" style="stop-color:#8968AD"/>
-	<stop  offset="0.5616" style="stop-color:#7D60A9"/>
-	<stop  offset="0.6517" style="stop-color:#755AA7"/>
-	<stop  offset="0.8252" style="stop-color:#6951A4"/>
-	<stop  offset="1" style="stop-color:#654EA3"/>
-</linearGradient>
 <path class="st2" d="M436,440H-14c-11.5,0-21-9.5-21-21V-9c0-11.5,9.5-21,21-21h450c11.5,0,21,9.5,21,21v428
 	C457,430.5,447.5,440,436,440z"/>
 <g id="Layer_1_1_">

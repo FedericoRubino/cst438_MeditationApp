@@ -54,7 +54,7 @@ public class Meditation1Screens extends AppCompatActivity {
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
-                if (page == 14) {
+                if (page == 19) {
                     timer.cancel();
                     musicStop();
                 }
@@ -94,7 +94,7 @@ public class Meditation1Screens extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if(position != 13){
+            if(position != 18){
                 doneBtn.setEnabled(false);
                 doneBtn.setVisibility(View.INVISIBLE);
             } else {
