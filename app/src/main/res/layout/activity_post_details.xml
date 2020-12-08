@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPostActivity"
+    tools:context=".PostDetails"
     android:background="@color/colorNavyBackgroud">
 
     <TextView
@@ -15,7 +15,6 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
-        android:text="Title"
         android:textAllCaps="true"
         android:textColor="@color/colorGrey"
         android:textSize="18sp"
@@ -35,7 +34,7 @@
         android:backgroundTint="#00FFFFFF"
         android:enabled="false"
         android:fontFamily="@font/comfortaa_bold"
-        android:onClick="createPost"
+        android:onClick="editActivity"
         android:text="Edit"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -68,7 +67,6 @@
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="top"
         android:padding="10dp"
-        android:text="Author"
         android:textColor="@color/colorGrey"
         android:textStyle="italic" />
 
@@ -84,10 +82,9 @@
         android:layout_marginTop="39dp"
         android:layout_marginEnd="46dp"
         android:layout_marginBottom="142dp"
+        android:fontFamily="@font/comfortaa_bold"
         android:gravity="top"
         android:padding="10dp"
-        android:fontFamily="@font/comfortaa_bold"
-        android:text="Description"
         android:textColor="@color/colorGrey" />
 
 
