@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                                     goToHomePage();
                                     return;
                                 }
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                             return;
                         } else {

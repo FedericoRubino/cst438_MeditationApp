@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">ReMi</string>
     <string name="login"><u>Login</u></string>
     <string name="username"><u>Username</u></string>
     <string name="password"><u>Password</u></string>

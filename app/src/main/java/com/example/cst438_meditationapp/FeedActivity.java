@@ -185,7 +185,6 @@ public class FeedActivity extends AppCompatActivity {
                     // downloading the image from the cloud storage
                     // Create a reference with an initial file path and name
                     pathReference = storageRef.child(currentObj.get("imageURL").toString());
-                    Log.d(TAG, "Tried to add an image " + pathReference);
                     final long ONE_MEGABYTE = 2024 * 2024;
                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
@@ -244,8 +243,6 @@ public class FeedActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 objectArray.add(object);
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                                Log.d(TAG, document.getId() + " => " + objectArray);
                             }
                             setUpRecyclerView();
                         } else {

@@ -80,7 +80,6 @@ public class Util {
                                 if(foundUser.get("username").equals(username) && foundUser.get("password").equals(password)){
                                     found[0] = true;
                                 }
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
