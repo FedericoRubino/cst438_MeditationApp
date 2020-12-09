@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -185,7 +186,6 @@ public class FeedActivity extends AppCompatActivity {
                     // downloading the image from the cloud storage
                     // Create a reference with an initial file path and name
                     pathReference = storageRef.child(currentObj.get("imageURL").toString());
-                    Log.d(TAG, "Tried to add an image " + pathReference);
                     final long ONE_MEGABYTE = 2024 * 2024;
                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
@@ -219,15 +219,30 @@ public class FeedActivity extends AppCompatActivity {
                 itemUsername.setText(currentObj.get("postUser").toString());
                 itemLikeCount.setText(currentObj.get("likeCount").toString());
             }
-                //make item clickable
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //save selected object
-                        selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
-                        startActivity(PostDetails.getIntent(FeedActivity.this,selectedObject));
-                    }
-                });
+
+            Button editButton = itemView.findViewById(R.id.editBtn);
+            ImageView likeImage = itemView.findViewById(R.id.like_image);
+
+            //make edit button clickable
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //save selected object
+                    selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
+                    startActivity(PostDetails.getIntent(FeedActivity.this,selectedObject));
+                }
+            });
+
+            //make lotus clickable
+            likeImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int likeCount = Integer.parseInt(currentObj.get("likeCount").toString());
+                    likeCount++;
+                    itemLikeCount.setText(likeCount + "");
+                }
+            });
+
 
         }//bind()
     }
@@ -244,8 +259,6 @@ public class FeedActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 objectArray.add(object);
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                                Log.d(TAG, document.getId() + " => " + objectArray);
                             }
                             setUpRecyclerView();
                         } else {

@@ -19,9 +19,9 @@ import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button testButton;
+//    Button testButton;
     // Access a Cloud Firestore instance from your Activity
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+//    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -29,25 +29,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //*************TEST RECYCLER VIEW*************
-        testButton = findViewById(R.id.Test_Button);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
-                startActivity(intent);
-            }
-        });
-        //*************TEST RECYCLER VIEW*************
-
-        readFromUserDB();
+//        //*************TEST RECYCLER VIEW*************
+//        testButton = findViewById(R.id.Test_Button);
+//        testButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, RecyclerViewActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//        //*************TEST RECYCLER VIEW*************
+//
+//        readFromUserDB();
     }
-
-    // starts the signup activity
-    public void startSignupActivity(View view){
-        Intent intent = SignupActivity.getIntent(this.getApplicationContext(),"");
-        startActivity(intent);
-    }
+//
+//    // starts the signup activity
+//    public void startSignupActivity(View view){
+//        Intent intent = SignupActivity.getIntent(this.getApplicationContext(),"");
+//        startActivity(intent);
+//    }
 
     // starts the login activity
     public void startLogInActivity(View view){
@@ -55,28 +55,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    public void readFromUserDB(){
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
+//
+//    public void readFromUserDB(){
+//        db.collection("users")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                            }
+//                        } else {
+//                            Log.w(TAG, "Error getting documents.", task.getException());
+//                        }
+//                    }
+//                });
+//    }
 
     public void startOnboarding(View view) {
         Intent intent = Onboarding.getIntent(this,"");
         startActivity(intent);
     }
-
-
 }
