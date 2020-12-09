@@ -107,6 +107,7 @@ public class FeedActivity extends AppCompatActivity {
 //        getDBInfo();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final Switch toggle = (Switch) findViewById(R.id.filter_button);
         toggle.setText("All Posts");

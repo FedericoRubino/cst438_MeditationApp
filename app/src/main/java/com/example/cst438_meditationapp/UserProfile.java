@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class UserProfile extends AppCompatActivity {
     private String username = LoginActivity.loggedUser;
@@ -17,6 +18,9 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
         user = findViewById(R.id.username);
         user.setText(username);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     public void startMainActivity(View view){
