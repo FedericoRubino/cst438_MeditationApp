@@ -26,6 +26,25 @@
 
     <string name="camera">Camera</string>
     <string name="profile">Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="username2">Username:</string>
+    <string name="write_a_caption">Write a caption...</string>
+    <string name="share">Share</string>
+    <string name="add_img">ADD IMG</string>
+    <string name="edit_post">Edit Post</string>
+    <string name="title">Title</string>
+    <string name="write_a_caption">Write a caption...</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="change_img">CHANGE IMG</string>
+    <string name="sign_up2">Sign up</string>
+    <string name="edit">Edit</string>
+    <string name="details">details</string>
+    <string name="title2">TITLE</string>
+    <string name="username3">Username</string>
+    <string name="_1">1</string>
+    <string name="sample_text">Sample text...</string>
+    <string name="heading">HEADING</string>
 
 
 </resources>

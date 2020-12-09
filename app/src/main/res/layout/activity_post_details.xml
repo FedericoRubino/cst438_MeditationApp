@@ -35,7 +35,7 @@
         android:enabled="false"
         android:fontFamily="@font/comfortaa_bold"
         android:onClick="editActivity"
-        android:text="Edit"
+        android:text="@string/edit"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"

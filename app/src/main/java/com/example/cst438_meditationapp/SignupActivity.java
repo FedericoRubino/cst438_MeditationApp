@@ -86,18 +86,30 @@ public class SignupActivity extends AppCompatActivity {
 
         final String username = mUsername.getText().toString();
         if(username.equals("")){
-            Toast.makeText(this,"Username is missing", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Username is missing", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         } else if (username.length() < 4){
-            Toast.makeText(this,"Username has to be at least of length 4.", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Username has to be at least of length 4.", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         }
         final String password = mPassword.getText().toString();
         if(password.equals("")){
-            Toast.makeText(this,"Password is missing", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Password is missing", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         } else if (!password.matches(mediumPassword)){
-            Toast.makeText(this, mediumPasswordMessage, Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, mediumPasswordMessage, Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         }
 
@@ -111,13 +123,19 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 if(mUsername.getText().toString().equals(document.getData().get("username"))){
-                                    Toast.makeText(SignupActivity.this, "That username already exists", Toast.LENGTH_SHORT).show();
+                                    Toast toast = Toast.makeText(SignupActivity.this, "That username already exists", Toast.LENGTH_SHORT);
+                                    View v = toast.getView();
+                                    v.setBackgroundResource(R.color.colorAccent);
+                                    toast.show();
                                     return;
                                 }
                             }
 
                             if(Util.addUserToDB(db, username,password)){
-                                Toast.makeText(SignupActivity.this, "You have successfully created a new user", Toast.LENGTH_SHORT).show();
+                                Toast toast = Toast.makeText(SignupActivity.this, "You have successfully created a new user", Toast.LENGTH_SHORT);
+                                View v = toast.getView();
+                                v.setBackgroundResource(R.color.colorAccent);
+                                toast.show();
                                 goToLoginPage();
                             }
                         } else {

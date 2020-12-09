@@ -303,4 +303,9 @@ public class FeedActivity extends AppCompatActivity {
         Intent intent = Home.getIntent(this,"");
         startActivity(intent);
     }
+
+    public void startUserProfile(View v) {
+        Intent intent = UserProfile.getIntent(this,"");
+        startActivity(intent);
+    }
 }

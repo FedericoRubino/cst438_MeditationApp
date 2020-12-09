@@ -50,7 +50,7 @@
         android:background="@drawable/entryfields"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="top"
-        android:hint="Write a caption..."
+        android:hint="@string/write_a_caption"
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColor="@color/colorGrey"
@@ -68,7 +68,7 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/comfortaa_bold"
         android:onClick="createPost"
-        android:text="Share"
+        android:text="@string/share"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent" />
@@ -84,7 +84,7 @@
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_corners"
-        android:text="ADD IMG" />
+        android:text="@string/add_img" />
 
     <ImageView
         android:id="@+id/image_view"

@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditPost"></activity>
+        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".EditPost" />
         <activity android:name=".PostDetails" />
         <activity android:name=".EditPostActivity" />
         <activity android:name=".Meditation1Screens" />
