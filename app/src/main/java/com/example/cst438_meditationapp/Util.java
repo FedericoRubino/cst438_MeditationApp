@@ -63,11 +63,10 @@ public class Util {
         return true;
     }
 
-    public static boolean checkForUserInDB(FirebaseFirestore db, Map<String, Object> user) {
+    private static boolean found = false;
+    public static boolean checkForUserInDB(FirebaseFirestore db, HashMap<String, Object> user) {
         final Object username = user.get("username");
         final Object password = user.get("password");
-        final boolean[] found = new boolean[1];
-
 
         db.collection("users")
                 .get()
@@ -78,7 +77,7 @@ public class Util {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> foundUser = document.getData();
                                 if(foundUser.get("username").equals(username) && foundUser.get("password").equals(password)){
-                                    found[0] = true;
+                                    found = true;
                                 }
                             }
                         } else {
@@ -86,7 +85,7 @@ public class Util {
                         }
                     }
                 });
-        return found[0];
+        return found;
     }
 
     public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
@@ -137,5 +136,47 @@ public class Util {
 
     public static void setID(int i){
         id = i;
+    }
+
+    //modified for testing purposes
+    public static boolean addPostToDB(FirebaseFirestore db, HashMap<String, Object> testPost) {
+        HashMap<String, Object> newPost = testPost;
+
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    int i = 0;
+
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                i++;
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                        setID(i);
+                    }
+
+                });
+
+        newPost.put("id", id + "");
+
+        // Add a new document with a generated ID
+        db.collection("posts")
+                .add(newPost)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
+        return true;
     }
 }

@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -33,7 +34,7 @@ public class ExampleInstrumentedTest {
         db = FirebaseFirestore.getInstance();
         newUser = new HashMap<>();
         newUser.put("username", "cst");
-        newUser.put("password", "cst123");
+        newUser.put("password", "Cst123");
         assertTrue(Util.addUserToDB(db, newUser));
     }
 
@@ -45,7 +46,42 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testUsername() {
-        assertFalse(Util.checkForUserInDB(db, newUser));
-        assertNotEquals("abc", newUser.get("username"));
+        boolean result = Util.checkForUserInDB(db, newUser);
+        assertTrue(result);
+//        assertNotEquals("abc", newUser.get("username"));
     }
+
+    @Test
+    public void testUsername2() {
+        assertEquals("cst", newUser.get("username"));
+    }
+
+    @Test
+    public void testPassword() {
+        assertNotEquals("abc321", newUser.get("password"));
+    }
+
+    @Test
+    public void testPassword2() {
+        assertEquals("Cst123", newUser.get("password"));
+    }
+
+//    @Test
+//    public void testAddPost(){
+//        HashMap<String, Object> testPost = new HashMap<>();
+//
+//        String title = "Test Post";
+//        String description = "Test Description";
+//        String url = "Test URL";
+//        String user = "Test User";
+//
+//        testPost.put("title", title);
+//        testPost.put("description", description);
+//        testPost.put("imageURL", url);
+//        testPost.put("postUser", "Test_User");
+//        testPost.put("likeCount", 0);
+//
+//        assertTrue(Util.addPostToDB(db, testPost));
+//        assertEquals("Test Post", testPost.get);
+//    }
 }

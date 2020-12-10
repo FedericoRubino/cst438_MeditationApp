@@ -50,6 +50,7 @@ public class EditPostActivity extends AppCompatActivity {
     // Create a child reference
     // imagesRef now points to "images"
     StorageReference imagesRef = storageRef.child("images");
+    StorageReference pathReference;
 
     EditText mTitle;
     EditText mDescription;
@@ -73,7 +74,7 @@ public class EditPostActivity extends AppCompatActivity {
         final boolean hasCamera = getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
 
         //initialize variables for add image feature
-//        imageView = findViewById(R.id.image_view);
+        imageView = findViewById(R.id.image_view);
         imgButton = findViewById(R.id.img_button);
 
         //listener for add image button
@@ -101,6 +102,11 @@ public class EditPostActivity extends AppCompatActivity {
             }
         });
     }//END OF onCreate()
+
+
+    Map<String, Object> currentObj;
+    Bitmap bmp;
+    byte[] currentByteArray;
     public void setUpDisplay(){
         db.collection("posts")
                 .get()
@@ -111,12 +117,29 @@ public class EditPostActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 if(object.get("id").equals(postID)) {
-                                    //pathReference = storageRef.child(object.get("imageURL").toString());
-                                    //post.setImageBitmap(Bitmap.createScaledBitmap(bmp, 130, 130, false));
+                                    pathReference = storageRef.child(object.get("imageURL").toString());
+                                    final long ONE_MEGABYTE = 2024 * 2024;
+                                    pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                        @Override
+                                        public void onSuccess(byte[] byteArray) {
+                                            currentByteArray = byteArray;
+                                            bmp = BitmapFactory.decodeByteArray(currentByteArray, 0, currentByteArray.length);
+                                            imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, 130, 130, false));
+                                            Log.d(TAG, "Successfully added " + pathReference);
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception exception) {
+                                            // Handle any errors
+                                            Log.d(TAG, "FAILED HERE" + pathReference);
+                                        }
+                                    });
+
                                     mTitle.setHint((String) object.get("title"));
                                     mDescription.setHint((String) object.get("description"));
-                                }
 
+                                    break;
+                                }
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
@@ -125,7 +148,11 @@ public class EditPostActivity extends AppCompatActivity {
                 });
     }
 
-    public void createPost(View view){
+    public void savePost(View view){
+        StorageReference postRef = storageRef.child("posts");
+//        StorageReference pathReference = storageRef.child(currentObj.get("imageURL").toString());
+//        db.collection("posts").document(postID).update(title: mTitle.getText().toString());
+
         String title = mTitle.getText().toString();
         if(title.equals("")){
             Toast toast = Toast.makeText(this,"Title is missing", Toast.LENGTH_SHORT);
