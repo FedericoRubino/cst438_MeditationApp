@@ -104,9 +104,7 @@ public class Util {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                i++;
-                            }
+                            i = task.getResult().getDocuments().size();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
@@ -124,6 +122,7 @@ public class Util {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        Log.d(TAG, "ID: " + id);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -150,9 +149,7 @@ public class Util {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                i++;
-                            }
+                            i = task.getResult().getDocuments().size();
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

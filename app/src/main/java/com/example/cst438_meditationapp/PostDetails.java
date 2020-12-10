@@ -32,7 +32,7 @@ public class PostDetails extends AppCompatActivity {
     private TextView author;
     private TextView description;
     private TextView title;
-    private ImageView post;
+    //private ImageView post;
     private String username = LoginActivity.loggedUser;
     private String postID;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -50,7 +50,7 @@ public class PostDetails extends AppCompatActivity {
         editButton = findViewById(R.id.editButton);
         author = findViewById(R.id.username);
         description = findViewById(R.id.description);
-        post = findViewById(R.id.image_view);
+        //post = findViewById(R.id.image_view);
         title = findViewById(R.id.postTitle);
         setUpDisplay();
         setButton();
@@ -90,6 +90,10 @@ public class PostDetails extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 if(object.get("id").equals(postID)) {
+                                    setUpText((String) object.get("title"), (String) object.get("description"), (String) object.get("postUser"));
+                                    if(object.get("postUser").equals(username)){
+                                        setButton();
+                                    }
                                     pathReference = storageRef.child(object.get("imageURL").toString());
                                     final long ONE_MEGABYTE = 2024 * 2024;
                                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -107,16 +111,6 @@ public class PostDetails extends AppCompatActivity {
                                             Log.d(TAG, "FAILED HERE" + pathReference);
                                         }
                                     });
-
-                                    title.setText((String) object.get("title"));
-                                    description.setText((String) object.get("description"));
-                                    author.setText((String) object.get("postUser"));
-
-                                    if(object.get("postUser").equals(username)){
-                                        setButton();
-                                    }
-
-                                    break;
                                 }
                             }
                         } else {
@@ -124,6 +118,12 @@ public class PostDetails extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void setUpText(String titleStr, String descriptionStr, String userStr){
+        title.setText(titleStr);
+        description.setText(descriptionStr);
+        author.setText(userStr);
     }
 
 
