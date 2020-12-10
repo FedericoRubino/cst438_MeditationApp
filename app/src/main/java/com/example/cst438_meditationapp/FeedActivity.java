@@ -229,10 +229,12 @@ public class FeedActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //save selected object
+//                    selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
                     selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
                     startActivity(PostDetails.getIntent(FeedActivity.this,selectedObject));
                 }
             });
+
 
             //make lotus clickable
             likeImage.setOnClickListener(new View.OnClickListener() {
