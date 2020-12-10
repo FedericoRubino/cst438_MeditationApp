@@ -1,21 +1,11 @@
 package com.example.cst438_meditationapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     // Access a Cloud Firestore instance from your Activity
 //    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
+    public static final String EXTRA = "MAIN EXTRA";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,5 +66,12 @@ public class MainActivity extends AppCompatActivity {
     public void startOnboarding(View view) {
         Intent intent = Onboarding.getIntent(this,"");
         startActivity(intent);
+    }
+
+    // Intent factory
+    public static Intent getIntent(Context context, String val){
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(EXTRA, val);
+        return intent;
     }
 }

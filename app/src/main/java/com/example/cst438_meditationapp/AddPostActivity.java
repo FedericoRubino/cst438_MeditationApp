@@ -94,19 +94,28 @@ public class AddPostActivity extends AppCompatActivity {
     public void createPost(View view){
         String title = mTitle.getText().toString();
         if(title.equals("")){
-            Toast.makeText(this,"Title is missing", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Title is missing", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         }
         String description = mDescription.getText().toString();
         if(description.equals("")){
-            Toast.makeText(this,"Description is missing", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Description is missing", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
             return;
         }
         // this where the upload to the database happens
         String url = uploadImage();
-        Toast.makeText(this, "The image url is: " + url,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "The image url is: " + url,Toast.LENGTH_SHORT).show();
         if(Util.addPostToDB(db, title, description, url)){
-            Toast.makeText(this,"You have successfully created a new post", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"You have successfully created a new post", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
 //            uploadImage();
             goToFeed();
         }

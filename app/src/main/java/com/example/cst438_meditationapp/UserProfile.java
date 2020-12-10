@@ -4,48 +4,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class Home extends AppCompatActivity {
-
-    public static final String EXTRA = "HOME EXTRA";
-
+public class UserProfile extends AppCompatActivity {
+    private String username = LoginActivity.loggedUser;
+    private TextView user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_user_profile);
+        user = findViewById(R.id.username);
+        user.setText(username);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.top_nav, menu);
-//        return true;
-//    }
-
-    public void startMeditation2(View view){
-        Intent intent = Meditation2Start.getIntent(this,"");
+    public void startMainActivity(View view){
+        Intent intent = MainActivity.getIntent(this.getApplicationContext(),"");
         startActivity(intent);
-    }
-
-    public void startMeditation1(View view){
-        Intent intent = Meditation1Start.getIntent(this,"");
-        startActivity(intent);
-    }
-
-
-
-
-    // Intent factory
-    public static Intent getIntent(Context context, String val){
-        Intent intent = new Intent(context, Home.class);
-        intent.putExtra(EXTRA, val);
-        return intent;
     }
 
     public void startFeed(View v) {
@@ -62,4 +42,13 @@ public class Home extends AppCompatActivity {
         Intent intent = UserProfile.getIntent(this,"");
         startActivity(intent);
     }
+
+    // Intent factory
+    public static Intent getIntent(Context context, String val){
+        Intent intent = new Intent(context, UserProfile.class);
+        intent.putExtra("EXTRA", val);
+        return intent;
+    }
+
+
 }

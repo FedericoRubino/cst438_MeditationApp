@@ -16,7 +16,7 @@
         android:layout_height="473dp"
         android:layout_marginTop="2dp"
         android:background="@color/colorNavyBackgroud"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

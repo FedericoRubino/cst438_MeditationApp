@@ -107,6 +107,7 @@ public class FeedActivity extends AppCompatActivity {
 //        getDBInfo();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final Switch toggle = (Switch) findViewById(R.id.filter_button);
         toggle.setText("All Posts");
@@ -301,6 +302,11 @@ public class FeedActivity extends AppCompatActivity {
 
     public void startHome(View v) {
         Intent intent = Home.getIntent(this,"");
+        startActivity(intent);
+    }
+
+    public void startUserProfile(View v) {
+        Intent intent = UserProfile.getIntent(this,"");
         startActivity(intent);
     }
 }

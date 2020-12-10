@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="center"
-        android:text="Edit Post"
+        android:text="@string/edit_post"
         android:textAllCaps="true"
         android:textColor="@color/colorGrey"
         android:textSize="18sp"
@@ -32,7 +32,7 @@
         android:layout_marginBottom="37dp"
         android:background="@drawable/entryfields"
         android:fontFamily="@font/comfortaa_bold"
-        android:hint="Title"
+        android:hint="@string/title"
         android:padding="10dp"
         android:textAlignment="viewStart"
         android:textColor="@color/colorGrey"
@@ -50,7 +50,7 @@
         android:background="@drawable/entryfields"
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="top"
-        android:hint="Write a caption..."
+        android:hint="@string/write_a_caption"
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColor="@color/colorGrey"
@@ -68,7 +68,7 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/comfortaa_bold"
         android:onClick="createPost"
-        android:text="Save"
+        android:text="@string/save"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent" />
@@ -84,7 +84,7 @@
         android:backgroundTint="#00FFFFFF"
         android:fontFamily="@font/comfortaa_bold"
         android:onClick="createPost"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorERROR" />
@@ -100,7 +100,7 @@
         android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_corners"
         android:padding="5dp"
-        android:text="CHANGE IMG" />
+        android:text="@string/change_img" />
 
     <ImageView
         android:id="@+id/image_view"

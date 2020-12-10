@@ -34,6 +34,7 @@
             android:layout_width="42dp"
             android:layout_height="43dp"
             android:layout_margin="18dp"
+            android:onClick="startUserProfile"
             android:background="@drawable/usericon" />
     </LinearLayout>
 </androidx.appcompat.widget.Toolbar>

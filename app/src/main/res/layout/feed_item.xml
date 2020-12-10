@@ -20,7 +20,6 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="@color/colorNavyBackgroud"
@@ -31,29 +30,28 @@
         android:layout_width="45dp"
         android:layout_height="43dp"
         android:layout_below="@+id/post_image"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         app:srcCompat="@drawable/ic_lotus" />
 
     <Button
         android:id="@+id/editBtn"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="details"
-        android:textAllCaps="false"
-        android:layout_toRightOf="@id/titleTv"
-        android:layout_marginLeft="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="83dp"
+        android:layout_toEndOf="@id/titleTv"
         android:background="@drawable/rounded_corners"
-        />
+        android:text="@string/details"
+        android:textAllCaps="false" />
 
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/titleTv"
-    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
     android:textAllCaps="true"
-    android:textSize="20dp"
-    android:layout_toRightOf="@+id/post_image"
-    android:text="TITLE"
+    android:textSize="20sp"
+    android:layout_toEndOf="@+id/post_image"
+    android:text="@string/title2"
     android:textColor="@color/colorNavyBackgroud"
     />
 
@@ -62,9 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleTv"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@id/post_image"
-        android:text="Username"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/post_image"
+        android:text="@string/username3"
         android:textColor="@color/colorNavyBackgroud"
 
         android:textStyle="italic" />
@@ -74,7 +72,7 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:layout_toRightOf="@+id/post_image"
+        android:layout_toEndOf="@+id/post_image"
         android:layout_below="@+id/tvUsername"
         android:text="@string/begin_a_two_minute_breathing_exercise_to_recenter_and_refocus"
         android:textColor="@color/colorNavyBackgroud" />
@@ -82,10 +80,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/like_image"
+        android:layout_toEndOf="@+id/like_image"
         android:layout_below="@+id/post_image"
         android:layout_marginTop="10dp"
-        android:text="1"
+        android:text="@string/_1"
         android:textColor="@color/colorNavyBackgroud"
         android:visibility="visible"
         android:id="@+id/tvLikeCount"
