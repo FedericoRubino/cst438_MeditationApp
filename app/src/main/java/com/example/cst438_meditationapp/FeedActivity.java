@@ -147,7 +147,7 @@ public class FeedActivity extends AppCompatActivity {
 //    }
 
 
-    private class Adapter  extends RecyclerView.Adapter<FeedActivity.ItemHolder> {
+    private class Adapter extends RecyclerView.Adapter<FeedActivity.ItemHolder> {
 
         @Override
         public FeedActivity.ItemHolder onCreateViewHolder(ViewGroup parent, int viewType){

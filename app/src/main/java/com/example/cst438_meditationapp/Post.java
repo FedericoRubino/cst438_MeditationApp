@@ -10,6 +10,7 @@ public class Post {
     private String description;
     private String imgURL;
     private String userID;
+    private String postID;
 
     // these properties will not be saved to the database
     @Exclude
@@ -28,11 +29,12 @@ public class Post {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Post(String title, String description, String imgURL, String userID) {
+    public Post(String title, String description, String imgURL, String userID, String postID) {
         this.title = title;
         this.description = description;
         this.imgURL = imgURL;
         this.userID = userID;
+        this.postID = postID;
     }
 
     public String getTitle() {
