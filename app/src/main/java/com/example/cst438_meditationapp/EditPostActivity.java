@@ -54,6 +54,13 @@ public class EditPostActivity extends AppCompatActivity {
 
     EditText mTitle;
     EditText mDescription;
+    String oldDescription;
+    String oldTitle;
+    String oldURL;
+    String title;
+    String description;
+    String imgURL;
+
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     ImageView imageView;
@@ -117,8 +124,10 @@ public class EditPostActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 if(object.get("id").equals(postID)) {
+                                    setUpText((String) object.get("title"), (String) object.get("description"));
                                     pathReference = storageRef.child(object.get("imageURL").toString());
-                                    final long ONE_MEGABYTE = 2024 * 2024;
+                                    oldURL = object.get("imageURL").toString();
+                                    final long ONE_MEGABYTE = 2024 * 2024 * 5;
                                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                         @Override
                                         public void onSuccess(byte[] byteArray) {
@@ -134,11 +143,6 @@ public class EditPostActivity extends AppCompatActivity {
                                             Log.d(TAG, "FAILED HERE" + pathReference);
                                         }
                                     });
-
-                                    mTitle.setHint((String) object.get("title"));
-                                    mDescription.setHint((String) object.get("description"));
-
-                                    break;
                                 }
                             }
                         } else {
@@ -148,45 +152,39 @@ public class EditPostActivity extends AppCompatActivity {
                 });
     }
 
-    public void savePost(View view){
-        StorageReference postRef = storageRef.child("posts");
-//        StorageReference pathReference = storageRef.child(currentObj.get("imageURL").toString());
-//        db.collection("posts").document(postID).update(title: mTitle.getText().toString());
-
-        String title = mTitle.getText().toString();
+    public void setUpText(String titleStr, String descriptionStr){
+        oldTitle = titleStr;
+        mTitle.setHint(titleStr);
+        oldDescription = descriptionStr;
+        mDescription.setHint(descriptionStr);
+    }
+    public void updatePost(View view){
+        title = mTitle.getText().toString();
         if(title.equals("")){
-            Toast toast = Toast.makeText(this,"Title is missing", Toast.LENGTH_SHORT);
-            View v = toast.getView();
-            v.setBackgroundResource(R.color.colorAccent);
-            toast.show();
-            return;
+            title = oldTitle;
         }
-        String description = mDescription.getText().toString();
+        description = mDescription.getText().toString();
         if(description.equals("")){
-            Toast toast = Toast.makeText(this,"Description is missing", Toast.LENGTH_SHORT);
-            View v = toast.getView();
-            v.setBackgroundResource(R.color.colorAccent);
-            toast.show();
-            return;
+            description = oldDescription;
         }
         // this where the upload to the database happens
         String url = uploadImage();
         //Toast.makeText(this, "The image url is: " + url,Toast.LENGTH_SHORT).show();
-        if(Util.addPostToDB(db, title, description, url)){
-            Toast.makeText(this,"You have successfully created a new post", Toast.LENGTH_SHORT).show();
-//            uploadImage();
-            goToFeed();
+        if(Util.updatePostFromDB(description, title, url, postID)){
+            Toast toast = Toast.makeText(this,"You have successfully updated the post", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
+            startActivity(Home.getIntent(this, ""));
         }
     }
 
     public void deletePost(View view){
         Util.deletePostFromDB(postID);
-        startActivity(Home.getIntent(this, ""));
-    }
-
-    public void updatePost(View view){
-        //TODO Bobby add update post
-        //Util.updatePostFromDB(postID);
+        Toast toast = Toast.makeText(this,"You have successfully deleted the post", Toast.LENGTH_SHORT);
+        View v = toast.getView();
+        v.setBackgroundResource(R.color.colorAccent);
+        toast.show();
         startActivity(Home.getIntent(this, ""));
     }
 

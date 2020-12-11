@@ -95,7 +95,7 @@ public class PostDetails extends AppCompatActivity {
                                         setButton();
                                     }
                                     pathReference = storageRef.child(object.get("imageURL").toString());
-                                    final long ONE_MEGABYTE = 2024 * 2024;
+                                    final long ONE_MEGABYTE = 2024 * 2024 * 5;
                                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                         @Override
                                         public void onSuccess(byte[] byteArray) {

@@ -110,8 +110,7 @@ public class Util {
                 });
     }
 
-    //TODO Bobby finish update
-    public static void updatePostFromDB(String description, String title, String imgURL, final String postID){
+    public static boolean updatePostFromDB(final String description, final String title, final String imgURL, final String postID){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("posts")
                 .get()
@@ -122,17 +121,17 @@ public class Util {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 if(object.get("id").equals(postID)) {
-                                    //document.getReference().update("description", );
-                                    //document.getReference().update("title", );
-                                    //document.getReference().update("imgURL", );
+                                    document.getReference().update("description", description);
+                                    document.getReference().update("title", title);
+                                    document.getReference().update("imgURL", imgURL);
                                 }
-
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
+        return true;
     }
 
     public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
@@ -142,24 +141,7 @@ public class Util {
         newPost.put("imageURL", imageURL);
         newPost.put("postUser", LoginActivity.loggedUser);
         newPost.put("likeCount", 0);
-
-        db.collection("posts")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    int i = 0;
-
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            i = task.getResult().getDocuments().size();
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                        setID(i);
-                    }
-
-                });
-
+        id++;
         newPost.put("id", id + "");
 
         // Add a new document with a generated ID

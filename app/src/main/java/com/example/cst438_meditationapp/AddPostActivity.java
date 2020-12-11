@@ -117,12 +117,12 @@ public class AddPostActivity extends AppCompatActivity {
             v.setBackgroundResource(R.color.colorAccent);
             toast.show();
 //            uploadImage();
-            goToFeed();
+            goToHome();
         }
     }
 
-    private void goToFeed() {
-        startActivity(FeedActivity.getIntent(this,""));
+    private void goToHome() {
+        startActivity(Home.getIntent(this,""));
     }
 
     public static Intent getIntent(Context context, String value){

@@ -187,7 +187,7 @@ public class FeedActivity extends AppCompatActivity {
                     // downloading the image from the cloud storage
                     // Create a reference with an initial file path and name
                     pathReference = storageRef.child(currentObj.get("imageURL").toString());
-                    final long ONE_MEGABYTE = 2024 * 2024;
+                    final long ONE_MEGABYTE = 2024 * 2024 * 5;
                     pathReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] byteArray) {
@@ -240,9 +240,31 @@ public class FeedActivity extends AppCompatActivity {
             likeImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int likeCount = Integer.parseInt(currentObj.get("likeCount").toString());
+                    Map<String, Object> selectedPost = displayedList.get(getAdapterPosition());
+                    selectedObject = "" + displayedList.get(getAdapterPosition()).get("id");
+                    int likeCount = Integer.parseInt(selectedPost.get("likeCount").toString());
                     likeCount++;
-                    itemLikeCount.setText(likeCount + "");
+                    final int newLikeCount = likeCount;
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    db.collection("posts")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            Map<String, Object> object = document.getData();
+                                            if(object.get("id").equals(selectedObject)) {
+                                                document.getReference().update("likeCount", newLikeCount);
+                                                itemLikeCount.setText(newLikeCount + "");
+                                            }
+
+                                        }
+                                    } else {
+                                        Log.w(TAG, "Error getting documents.", task.getException());
+                                    }
+                                }
+                            });
                 }
             });
 
