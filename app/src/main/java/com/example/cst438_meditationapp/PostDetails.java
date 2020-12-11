@@ -122,8 +122,10 @@ public class PostDetails extends AppCompatActivity {
 
     public void setUpText(String titleStr, String descriptionStr, String userStr){
         title.setText(titleStr);
-        description.setText(descriptionStr);
-        author.setText(userStr);
+        String descriptionText = "Description: " + descriptionStr;
+        description.setText(descriptionText);
+        String authorText = "Author: " + userStr;
+        author.setText(authorText);
     }
 
 

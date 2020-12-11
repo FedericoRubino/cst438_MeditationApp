@@ -88,6 +88,53 @@ public class Util {
         return found;
     }
 
+    public static void deletePostFromDB(final String postID){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> object = document.getData();
+                                if(object.get("id").equals(postID)) {
+                                    document.getReference().delete();
+                                }
+
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    //TODO Bobby finish update
+    public static void updatePostFromDB(String description, String title, String imgURL, final String postID){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> object = document.getData();
+                                if(object.get("id").equals(postID)) {
+                                    //document.getReference().update("description", );
+                                    //document.getReference().update("title", );
+                                    //document.getReference().update("imgURL", );
+                                }
+
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
     public static boolean addPostToDB(FirebaseFirestore db, String title, String description, String imageURL) {
         HashMap<String, Object> newPost = new HashMap<>();
         newPost.put("title", title);
