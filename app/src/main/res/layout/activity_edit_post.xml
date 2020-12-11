@@ -33,10 +33,11 @@
         android:background="@drawable/entryfields"
         android:fontFamily="@font/comfortaa_bold"
         android:hint="@string/title"
+        android:textColorHint="@color/colorAccent"
         android:padding="10dp"
         android:textAlignment="viewStart"
         android:textColor="@color/colorGrey"
-        android:textColorHint="@color/colorGrey" />
+        />
 
     <EditText
         android:id="@+id/descriptionEt"
@@ -51,10 +52,11 @@
         android:fontFamily="@font/comfortaa_bold"
         android:gravity="top"
         android:hint="@string/write_a_caption"
+        android:textColorHint="@color/colorAccent"
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:textColor="@color/colorGrey"
-        android:textColorHint="@color/colorGrey" />
+         />
 
     <TextView
         android:layout_width="94dp"
@@ -91,14 +93,15 @@
 
     <Button
         android:id="@+id/img_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/image_view"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="39dp"
         android:background="@drawable/rounded_corners"
+        android:fontFamily="@font/comfortaa_bold"
         android:padding="5dp"
         android:text="@string/change_img" />
 
