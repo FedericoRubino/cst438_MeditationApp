@@ -43,6 +43,7 @@
     <string name="username3">Username</string>
     <string name="_1">1</string>
     <string name="heading">HEADING</string>
+    <string name="loading">Loading...</string>
 
 
 </resources>

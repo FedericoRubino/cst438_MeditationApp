@@ -141,7 +141,7 @@ public class Util {
         newPost.put("imageURL", imageURL);
         newPost.put("postUser", LoginActivity.loggedUser);
         newPost.put("likeCount", 0);
-        id++;
+        id = findLargestID() + 1;
         newPost.put("id", id + "");
 
         // Add a new document with a generated ID
@@ -160,6 +160,33 @@ public class Util {
             }
         });
         return true;
+    }
+
+    public static int findLargestID(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final int[] finalID = {0};
+        db.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int currentID = 0;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> object = document.getData();
+                                String stringID = object.get("id").toString();
+                                int newID = Integer.parseInt(stringID);
+                                if(newID > currentID) {
+                                    currentID = newID;
+                                }
+                            }
+                            finalID[0] = currentID;
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+        return finalID[0];
     }
 
     public static void setID(int i){
