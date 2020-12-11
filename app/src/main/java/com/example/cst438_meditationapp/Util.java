@@ -141,7 +141,7 @@ public class Util {
         newPost.put("imageURL", imageURL);
         newPost.put("postUser", LoginActivity.loggedUser);
         newPost.put("likeCount", 0);
-        id = findLargestID() + 1;
+        findLargestID();
         newPost.put("id", id + "");
 
         // Add a new document with a generated ID
@@ -162,9 +162,12 @@ public class Util {
         return true;
     }
 
-    public static int findLargestID(){
+    public static void upDateId(int num){
+        id = num + 1;
+    }
+
+    public static void findLargestID(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final int[] finalID = {0};
         db.collection("posts")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -180,13 +183,12 @@ public class Util {
                                     currentID = newID;
                                 }
                             }
-                            finalID[0] = currentID;
+                            upDateId(currentID);
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
                     }
                 });
-        return finalID[0];
     }
 
     public static void setID(int i){
