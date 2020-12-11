@@ -179,6 +179,17 @@ public class EditPostActivity extends AppCompatActivity {
         }
     }
 
+    public void deletePost(View view){
+        Util.deletePostFromDB(postID);
+        startActivity(Home.getIntent(this, ""));
+    }
+
+    public void updatePost(View view){
+        //TODO Bobby add update post
+        //Util.updatePostFromDB(postID);
+        startActivity(Home.getIntent(this, ""));
+    }
+
     private void goToFeed() {
         startActivity(FeedActivity.getIntent(this,""));
     }
