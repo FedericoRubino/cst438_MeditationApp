@@ -35,8 +35,8 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] slide_descriptions = {
-            "Use guided meditations to re-center and refocus. Tune out the noise of the outside world for a couple of minutes a day and re-center yourself. Find a momement of calm. Work on developing a restful mind instead of a restless one.",
-            "Take photos of things that bring you joy and calm. Share these photos with others so that they can share in your relaxation and mindfulness. Comment on others photos and create meaningful conversations about wellness.",
+            "Use guided meditations to re-center and refocus. Tune out the noise of the outside world for a couple of minutes a day and re-center yourself. Find a moment of calm. Work on developing a restful mind instead of a restless one.",
+            "Take photos of things that bring you joy and calm. Share these photos with others so that they can share in your relaxation and mindfulness.",
             "Connect with like minded individuals and find others who share the same interest in practicing self-care and mindfulness to reduce stress and anxiety."
     };
 
