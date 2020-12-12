@@ -175,10 +175,11 @@ public class Util {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             int currentID = 0;
+                            int newID = 0;
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> object = document.getData();
                                 String stringID = object.get("id").toString();
-                                int newID = Integer.parseInt(stringID);
+                                newID = Integer.parseInt(stringID);
                                 if(newID > currentID) {
                                     currentID = newID;
                                 }
