@@ -302,7 +302,10 @@ public class FeedActivity extends AppCompatActivity {
             adapter = new Adapter();
             rvAssignment.setAdapter(adapter);
         } else {
-            Toast.makeText(this, "Empty database!!!", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "No posts yet. Create one!", Toast.LENGTH_SHORT);
+            View v = toast.getView();
+            v.setBackgroundResource(R.color.colorAccent);
+            toast.show();
         }
     }
 
